@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFNMG • AvaliaAtitude - Painel de Gestão e Coordenação Pedagógica (Desktop)</title>
+  <style>
+    :root {
+      --primary: #2F9E41;
+      --primary-dark: #1E6B2B;
+      --primary-light: #F0FDF4;
+      --primary-border: #86EFAC;
+      --alert: #CD191E;
+      --alert-bg: #FEF2F2;
+      --alert-border: #FECACA;
+      --gray-900: #111827;
+      --gray-800: #1F2937;
+      --gray-700: #374151;
+      --gray-600: #4B5563;
+      --gray-500: #6B7280;
+      --gray-400: #9CA3AF;
+      --gray-300: #D1D5DB;
+      --gray-200: #E5E7EB;
+      --gray-100: #F3F4F6;
+      --gray-50: #F9FAFB;
+      --white: #FFFFFF;
+      --sidebar-width: 260px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--gray-50);
+      color: var(--gray-900);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--white);
+      border-right: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      height: 72px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .brand-text h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gray-900);
+      letter-spacing: -0.2px;
+    }
+
+    .brand-text h1 span {
+      color: var(--primary);
+    }
+
+    .brand-text p {
+      font-size: 11px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .nav-list {
+      padding: 16px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 12px 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .nav-item:hover {
+      background: var(--gray-100);
+      color: var(--gray-900);
+    }
+
+    .nav-item.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .nav-item svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .user-footer {
+      padding: 16px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+    }
+
+    .avatar-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--gray-700);
+    }
+
+    .user-meta h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .user-meta p {
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+
+    /* Main Layout */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Topbar */
+    .topbar {
+      height: 72px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      flex-shrink: 0;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      padding: 8px 14px;
+      width: 360px;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 13px;
+      width: 100%;
+      color: var(--gray-900);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .period-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    /* View Content */
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px;
+      display: none;
+    }
+
+    .content-area.active {
+      display: block;
+    }
+
+    /* Typography & Headers */
+    .page-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+
+    /* Metric Cards Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .metric-card.alert-card {
+      border-left: 4px solid var(--alert);
+    }
+
+    .metric-header {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .metric-val {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gray-900);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-desc {
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+
+    /* Standardized Card Container */
+    .panel-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    /* Tables */
+    .table-responsive {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .table-responsive th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--gray-50);
+      color: var(--gray-600);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .table-responsive td {
+      padding: 14px;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-700);
+      vertical-align: middle;
+    }
+
+    .table-responsive tr:hover td {
+      background: var(--gray-50);
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-green { background: var(--primary-light); color: var(--primary-dark); }
+    .badge-alert { background: var(--alert-bg); color: var(--alert); border: 1px solid var(--alert-border); }
+    .badge-neutral { background: var(--gray-100); color: var(--gray-600); }
+
+    .btn-sm {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-sm:hover {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    .btn-sm.primary {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* Heatmap Grid (Abordagem Finlandesa) */
+    .heatmap-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .heatmap-table th {
+      padding: 10px;
+      background: var(--gray-50);
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      font-weight: 700;
+    }
+
+    .heatmap-table td {
+      padding: 14px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      font-weight: 600;
+    }
+
+    .score-high { background: #DCFCE7; color: #166534; }
+    .score-mid { background: #FEF9C3; color: #854D0E; }
+    .score-low { background: #FEE2E2; color: #991B1B; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 24, 39, 0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 620px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: popIn 0.2s ease-out;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 24px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--gray-50);
+    }
+
+    /* Radar Simulation */
+    .radar-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 16px 0;
+    }
+
+    .radar-visual-desktop {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px dashed var(--gray-300);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, var(--primary-light) 25%, var(--white) 75%);
+    }
+
+    .radar-point {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div style="width: 32px; height: 38px;">
+        <!-- Logo IF -->
+        <svg viewBox="0 0 50 60" width="30" height="36">
+          <circle cx="9" cy="9" r="8" fill="#CD191E" />
+          <rect x="20" y="1" width="13" height="15" rx="3" fill="#2F9E41" />
+          <rect x="35" y="1" width="13" height="15" rx="3" fill="#2F9E41" />
+          <rect x="2" y="18" width="14" height="15" rx="3" fill="#2F9E41" />
+          <rect x="18" y="18" width="14" height="15" rx="3" fill="#2F9E41" />
+          <rect x="2" y="35" width="14" height="15" rx="3" fill="#2F9E41" />
+          <rect x="18" y="35" width="14" height="15" rx="3" fill="#2F9E41" />
+          <rect x="34" y="35" width="14" height="15" rx="3" fill="#2F9E41" />
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>IFNMG • <span>AvaliaAtitude</span></h1>
+        <p>Gestão & Coordenação Pedagógica</p>
+      </div>
+    </div>
+
+    <div class="nav-list">
+      <div class="nav-label">Visões Analíticas</div>
+      <div class="nav-item active" onclick="switchView('d01', this)">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span>Alerta Precoce (MTSS)</span>
+      </div>
+      <div class="nav-item" onclick="switchView('d02', this)">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        <span>Clima Escolar & Turmas</span>
+      </div>
+      <div class="nav-item" onclick="switchView('d03', this)">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <span>Prontuário & Mediação</span>
+      </div>
+
+      <div class="nav-label" style="margin-top: 16px;">Integrações</div>
+      <a href="prototipo_interativo_mobile.html" target="_blank" class="nav-item" style="text-decoration: none;">
+        <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+        <span>Abrir Protótipo Mobile ↗</span>
+      </a>
+    </div>
+
+    <div class="user-footer">
+      <div class="avatar-box">CP</div>
+      <div class="user-meta">
+        <h4>Profª. Cristina Prado</h4>
+        <p>Coordenação Pedagógica</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="#9CA3AF"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="searchInput" placeholder="Filtrar por estudante, turma ou dimensão..." oninput="filterTable()">
+      </div>
+      <div class="top-actions">
+        <div class="period-badge">
+          <span>Ano Letivo 2026 • 2º Bimestre</span>
+        </div>
+        <button class="btn-action" onclick="openModal('modalIntervencao')">
+          <span>+ Nova Intervenção</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- [D01] View: Sistema de Alerta Precoce (MTSS) -->
+    <main id="d01" class="content-area active">
+      <h2 class="page-title">Sistema de Alerta Precoce & Suporte Pedagógico (MTSS)</h2>
+      <p class="page-subtitle">Cruzamento multidimensional: queda de engajamento atitudinal, assiduidade e entregas de atividades.</p>
+
+      <!-- KPI Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-header">Estudantes Acompanhados</div>
+          <div class="metric-val">480</div>
+          <div class="metric-desc">Fundamental II e Ensino Médio</div>
+        </div>
+        <div class="metric-card alert-card">
+          <div class="metric-header">Casos em Alerta (Nível 2 e 3)</div>
+          <div class="metric-val" style="color: var(--alert);">14</div>
+          <div class="metric-desc">2.9% do corpo discente</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Intervenções em Andamento</div>
+          <div class="metric-val">9</div>
+          <div class="metric-desc">Mediações e apoio pedagógico</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Taxa de Resolução Formativa</div>
+          <div class="metric-val" style="color: var(--primary);">86%</div>
+          <div class="metric-desc">Casos normalizados no período</div>
+        </div>
+      </div>
+
+      <!-- Alerta Precoce Table -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <h3 class="panel-title">Estudantes com Sinalização de Apoio Pedagógico</h3>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-sm primary" onclick="filterByLevel('all')">Todos (14)</button>
+            <button class="btn-sm" onclick="filterByLevel('tier2')">Nível 2 - Focalizado (10)</button>
+            <button class="btn-sm" onclick="filterByLevel('tier3')">Nível 3 - Intensivo (4)</button>
+          </div>
+        </div>
+
+        <table class="table-responsive" id="alertTable">
+          <thead>
+            <tr>
+              <th>Estudante</th>
+              <th>Turma</th>
+              <th>Dimensão Crítica</th>
+              <th>Ausências</th>
+              <th>Entregas</th>
+              <th>Nível MTSS</th>
+              <th>Status</th>
+              <th style="text-align: right;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-tier="tier2">
+              <td><strong>Lucas Mendes Silva</strong><br><span style="font-size: 11px; color: var(--gray-500);">#2026-0812</span></td>
+              <td>9º Ano B</td>
+              <td><span style="color: var(--alert); font-weight: 600;">Autonomia (-35%)</span></td>
+              <td>3 consecutivas</td>
+              <td>90% em dia</td>
+              <td><span class="badge-status badge-alert">Nível 2</span></td>
+              <td><span class="badge-status badge-neutral">Em Diálogo c/ Família</span></td>
+              <td style="text-align: right;">
+                <button class="btn-sm primary" onclick="openStudentProntuario('Lucas Mendes Silva')">Prontuário</button>
+                <button class="btn-sm" onclick="openModal('modalIntervencao')">Intervir</button>
+              </td>
+            </tr>
+            <tr data-tier="tier3">
+              <td><strong>Enzo Gabriel Dias</strong><br><span style="font-size: 11px; color: var(--gray-500);">#2026-0144</span></td>
+              <td>1º Ano EM A</td>
+              <td><span style="color: var(--alert); font-weight: 600;">Participação e Presença</span></td>
+              <td>6 ausências</td>
+              <td>55% em dia</td>
+              <td><span class="badge-status badge-alert">Nível 3</span></td>
+              <td><span class="badge-status badge-neutral">NAPNE Notificado</span></td>
+              <td style="text-align: right;">
+                <button class="btn-sm" onclick="openStudentProntuario('Enzo Gabriel Dias')">Prontuário</button>
+                <button class="btn-sm" onclick="openModal('modalIntervencao')">Intervir</button>
+              </td>
+            </tr>
+            <tr data-tier="tier2">
+              <td><strong>Mariana Costa Ferreira</strong><br><span style="font-size: 11px; color: var(--gray-500);">#2026-0521</span></td>
+              <td>8º Ano C</td>
+              <td><span style="color: var(--gray-700); font-weight: 600;">Responsabilidade</span></td>
+              <td>2 ausências</td>
+              <td>72% em dia</td>
+              <td><span class="badge-status badge-neutral">Nível 2</span></td>
+              <td><span class="badge-status badge-green">Reunião Agendada</span></td>
+              <td style="text-align: right;">
+                <button class="btn-sm" onclick="openStudentProntuario('Mariana Costa Ferreira')">Prontuário</button>
+                <button class="btn-sm" onclick="openModal('modalIntervencao')">Intervir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- [D02] View: Painel de Clima Escolar (Abordagem Finlandesa) -->
+    <main id="d02" class="content-area">
+      <h2 class="page-title">Gestão de Clima Escolar e Bem-Estar Coletivo</h2>
+      <p class="page-subtitle">Abordagem Finlandesa: diagnóstico por turma e dimensão para orientar projetos institucionais, sem rotular indivíduos.</p>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-header">Índice Geral de Clima Escolar</div>
+          <div class="metric-val" style="color: var(--primary);">8.8 <span style="font-size: 16px; color: var(--gray-500);">/ 10</span></div>
+          <div class="metric-desc">Média ponderada das 5 dimensões</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Dimensão mais Consolidada</div>
+          <div class="metric-val" style="font-size: 18px; color: var(--primary-dark); margin-top: 6px;">Respeito & Convivência</div>
+          <div class="metric-desc">93% de avaliações positivas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Dimensão Prioritária para Formação</div>
+          <div class="metric-val" style="font-size: 18px; color: var(--gray-900); margin-top: 6px;">Autonomia nos Estudos</div>
+          <div class="metric-desc">Demanda oficinas nos 9º Anos</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Ações Coletivas Concluídas</div>
+          <div class="metric-val">12</div>
+          <div class="metric-desc">Oficinas e círculos restaurativos</div>
+        </div>
+      </div>
+
+      <!-- Heatmap Table -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <h3 class="panel-title">Mapa de Calor por Turma e Dimensão (BNCC / CASEL)</h3>
+          <span style="font-size: 12px; color: var(--gray-500);">Legenda: Verde (Consolidado) • Amarelo (Acompanhamento) • Vermelho (Projeto Coletivo)</span>
+        </div>
+
+        <table class="heatmap-table">
+          <thead>
+            <tr>
+              <th style="text-align: left;">Turma / Ano</th>
+              <th>Responsabilidade</th>
+              <th>Colaboração</th>
+              <th>Autonomia</th>
+              <th>Participação</th>
+              <th>Respeito e Convivência</th>
+              <th>Ação Coletiva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: left; font-weight: 700;">6º Ano A</td>
+              <td class="score-high">9.1</td>
+              <td class="score-high">8.9</td>
+              <td class="score-mid">7.6</td>
+              <td class="score-high">9.0</td>
+              <td class="score-high">9.4</td>
+              <td><button class="btn-sm" onclick="showActionToast('6º Ano A')">Ver Projeto</button></td>
+            </tr>
+            <tr>
+              <td style="text-align: left; font-weight: 700;">7º Ano B</td>
+              <td class="score-high">8.7</td>
+              <td class="score-mid">7.4</td>
+              <td class="score-mid">7.2</td>
+              <td class="score-high">8.5</td>
+              <td class="score-high">9.0</td>
+              <td><button class="btn-sm" onclick="showActionToast('7º Ano B')">Ver Projeto</button></td>
+            </tr>
+            <tr>
+              <td style="text-align: left; font-weight: 700;">8º Ano A</td>
+              <td class="score-high">8.5</td>
+              <td class="score-high">8.8</td>
+              <td class="score-high">8.4</td>
+              <td class="score-high">8.6</td>
+              <td class="score-high">9.2</td>
+              <td><span style="color: var(--gray-400); font-size: 11px;">Sem pendências</span></td>
+            </tr>
+            <tr>
+              <td style="text-align: left; font-weight: 700;">9º Ano B (Foco)</td>
+              <td class="score-mid">7.8</td>
+              <td class="score-high">8.9</td>
+              <td class="score-low">6.3</td>
+              <td class="score-high">8.4</td>
+              <td class="score-high">9.1</td>
+              <td><button class="btn-sm primary" onclick="showActionToast('9º Ano B')">Oficina de Autonomia</button></td>
+            </tr>
+            <tr>
+              <td style="text-align: left; font-weight: 700;">1º Médio Integrado A</td>
+              <td class="score-high">9.0</td>
+              <td class="score-high">9.2</td>
+              <td class="score-high">8.7</td>
+              <td class="score-high">8.9</td>
+              <td class="score-high">9.5</td>
+              <td><span style="color: var(--gray-400); font-size: 11px;">Sem pendências</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- [D03] View: Prontuário Holístico & Mediação de Contestações -->
+    <main id="d03" class="content-area">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div>
+          <h2 class="page-title">Prontuário Multidisciplinar & Mediação Formativa</h2>
+          <p class="page-subtitle" style="margin-bottom: 0;">Estudante: <strong>Lucas Mendes Silva</strong> (9º Ano B • Matrícula #2026-0812)</p>
+        </div>
+        <button class="btn-sm" onclick="switchView('d01', document.querySelectorAll('.nav-item')[0])">⬅ Voltar ao Alerta Precoce</button>
+      </div>
+
+      <!-- Radar and Evolution Panel -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <h3 class="panel-title">Cruzamento Multidimensional de Evidências (Kindbegrip)</h3>
+          <span style="font-size: 12px; color: var(--gray-500);">Consenso entre 4 docentes e autoavaliação</span>
+        </div>
+
+        <div class="radar-container">
+          <div class="radar-visual-desktop">
+            <span style="font-size: 11px; font-weight: 700; color: var(--primary-dark);">Radar Holístico</span>
+            <div class="radar-point" style="top: 25px; left: 105px; background: var(--primary);" title="Colaboração: 88%"></div>
+            <div class="radar-point" style="top: 70px; right: 25px; background: var(--primary);" title="Respeito: 92%"></div>
+            <div class="radar-point" style="bottom: 40px; right: 45px; background: var(--primary);" title="Participação: 74%"></div>
+            <div class="radar-point" style="bottom: 30px; left: 45px; background: var(--primary);" title="Responsabilidade: 68%"></div>
+            <div class="radar-point" style="top: 75px; left: 25px; background: var(--alert);" title="Autonomia: 46%"></div>
+          </div>
+
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Colaboração (Trabalho em grupo)</span><strong>88%</strong>
+              </div>
+              <div style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                <div style="width: 88%; height: 100%; background: var(--primary);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Respeito e Convivência</span><strong>92%</strong>
+              </div>
+              <div style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                <div style="width: 92%; height: 100%; background: var(--primary);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Participação em Discussões</span><strong>74%</strong>
+              </div>
+              <div style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                <div style="width: 74%; height: 100%; background: var(--primary);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Responsabilidade e Assiduidade</span><strong>68%</strong>
+              </div>
+              <div style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                <div style="width: 68%; height: 100%; background: var(--primary);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Autonomia (Persistência individual)</span><strong style="color: var(--alert);">46%</strong>
+              </div>
+              <div style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                <div style="width: 46%; height: 100%; background: var(--alert);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mediation Case Box -->
+      <div class="panel-card" style="border: 1.5px solid var(--primary-border); background: var(--primary-light);">
+        <div class="panel-header" style="margin-bottom: 12px;">
+          <div>
+            <span class="badge-status badge-alert">Caso de Mediação Ativo • Audit ID #8819-IFNMG</span>
+            <h3 class="panel-title" style="margin-top: 6px;">Manifestação da Família / Estudante em Análise</h3>
+          </div>
+          <span style="font-size: 11px; color: var(--gray-500);">Recebido em 24/10/2026 • Prazo legal: 48h</span>
+        </div>
+
+        <div style="background: var(--white); padding: 14px; border-radius: 8px; border: 1px solid var(--gray-200); margin-bottom: 16px;">
+          <div style="font-size: 12px; font-weight: 700; color: var(--gray-700); margin-bottom: 4px;">Contexto apresentado pelo Responsável:</div>
+          <p style="font-size: 13px; color: var(--gray-800); line-height: 1.5;">
+            “Olá Profa. Helena e Coordenação! Na semana do dia 18/10 o Lucas estava em ajuste de medicação prescrita e teve episódios de sonolência matinal. Já entregamos o atestado do neuropediatra na secretaria. Pedimos que esse fator de saúde seja considerado na avaliação de autonomia.”
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button class="btn-sm" onclick="alert('Histórico de atestados e registros médicos do SUAP aberto para consulta restrita.')">Ver Anexos de Saúde</button>
+          <button class="btn-sm primary" onclick="openModal('modalResolucao')">Concluir Mediação & Parecer</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal: Nova Intervenção Pedagógica -->
+  <div class="modal-backdrop" id="modalIntervencao">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 15px; font-weight: 700;">Registrar Intervenção Pedagógica Focalizada</h3>
+        <button onclick="closeModal('modalIntervencao')" style="background:none; border:none; font-size:18px; cursor:pointer;">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 14px;">
+          <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Estudante Selecionado:</label>
+          <input type="text" value="Lucas Mendes Silva (9º Ano B)" readonly style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; background:var(--gray-100); font-size:13px;">
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Tipo de Ação Pedagógica (MTSS Nível 2):</label>
+          <select style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px; background:var(--white);">
+            <option>Mediação individual de estratégias de estudo (Autonomia)</option>
+            <option>Adaptação de tempo e instruções em tarefas escritas</option>
+            <option>Reunião de alinhamento com família e docentes</option>
+            <option>Encaminhamento ao setor psicopedagógico (NAPNE)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Responsável pelo Acompanhamento:</label>
+          <input type="text" value="Profª. Cristina Prado (Coordenação) + Profa. Helena (Português)" style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Metas Formativas (Período de 15 dias):</label>
+          <textarea style="width:100%; height:70px; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px; resize:none;">Incentivo ao checklist de início de aula e fornecimento de roteiros passo a passo nas tarefas individuais.</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm" onclick="closeModal('modalIntervencao')">Cancelar</button>
+        <button class="btn-sm primary" onclick="saveIntervention()">Salvar Intervenção</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Concluir Mediação & Parecer da Família -->
+  <div class="modal-backdrop" id="modalResolucao">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 15px; font-weight: 700;">Parecer da Mediação • Solicitação #8819-IFNMG</h3>
+        <button onclick="closeModal('modalResolucao')" style="background:none; border:none; font-size:18px; cursor:pointer;">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 14px;">
+          Selecione a resolução pedagógica após análise da documentação médica e diálogo com a equipe docente:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+            <input type="radio" name="res_choice" checked>
+            <span><strong>Acolher contextualização:</strong> Registrar nota de contexto médico no prontuário e suspender alerta de autonomia.</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+            <input type="radio" name="res_choice">
+            <span><strong>Agendar acolhimento presencial:</strong> Convidar a família para reunião com NAPNE e coordenação.</span>
+          </label>
+        </div>
+
+        <div>
+          <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Texto do Parecer Devolutivo (Enviado no app da família):</label>
+          <textarea style="width:100%; height:80px; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px; resize:none;">Atestado médico acolhido pelo núcleo pedagógico. A equipe docente foi orientada quanto à sonolência matinal e à adaptação do ritmo nas semanas de ajuste terapêutico.</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm" onclick="closeModal('modalResolucao')">Fechar</button>
+        <button class="btn-sm primary" onclick="resolveMediation()">Homologar e Notificar Família</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchView(viewId, element) {
+      document.querySelectorAll('.content-area').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+      const target = document.getElementById(viewId);
+      if (target) target.classList.add('active');
+      if (element) element.classList.add('active');
+    }
+
+    function openStudentProntuario(studentName) {
+      switchView('d03', document.querySelectorAll('.nav-item')[2]);
+    }
+
+    function filterByLevel(level) {
+      const rows = document.querySelectorAll('#alertTable tbody tr');
+      rows.forEach(r => {
+        if (level === 'all' || r.getAttribute('data-tier') === level) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    function filterTable() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#alertTable tbody tr');
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        r.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.add('active');
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.remove('active');
+    }
+
+    function saveIntervention() {
+      alert('Intervenção pedagógica registrada com sucesso! Notificação enviada aos docentes do 9º Ano B.');
+      closeModal('modalIntervencao');
+    }
+
+    function resolveMediation() {
+      alert('Parecer homologado! O registro no prontuário de Lucas Mendes Silva foi atualizado e a família foi notificada via app.');
+      closeModal('modalResolucao');
+      switchView('d01', document.querySelectorAll('.nav-item')[0]);
+    }
+
+    function showActionToast(turma) {
+      alert('Plano de ação institucional para o ' + turma + ' aberto para consulta da equipe multidisciplinar.');
+    }
+  </script>
+</body>
+</html>
