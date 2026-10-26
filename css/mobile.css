@@ -258,3 +258,223 @@ body.mobile-preview {
   border-radius: 3px;
   background: var(--primary);
 }
+
+/* Seletor de Perfil (M00) */
+.profile-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.profile-card:hover,
+.profile-card.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-card .profile-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.profile-card.active .profile-icon {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.profile-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.profile-card p {
+  font-size: 11px;
+  color: var(--gray-600);
+}
+
+/* Barra de Busca e Filtros Móveis (M02) */
+.mobile-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+.mobile-search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 13px;
+  background: transparent;
+}
+
+.chips-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+
+.filter-chip {
+  padding: 5px 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-700);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filter-chip.active,
+.filter-chip:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/* Chips de Evidências no Registro Rápido (M03) */
+.evidence-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ev-chip {
+  padding: 6px 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ev-chip:hover {
+  border-color: var(--primary);
+}
+
+.ev-chip.selected {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-color: var(--primary);
+  font-weight: 700;
+}
+
+/* Escala de Autoavaliação (M06) */
+.scale-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.scale-btn {
+  padding: 8px 4px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-700);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.scale-btn:hover {
+  border-color: var(--primary);
+}
+
+.scale-btn.selected {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  font-weight: 700;
+}
+
+/* Notificação Toast Flutuante */
+.toast-notice {
+  position: absolute;
+  top: 48px;
+  left: 16px;
+  right: 16px;
+  background: var(--gray-900);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.toast-notice.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Caixa SLA e Diálogo (M08 / M09) */
+.sla-box {
+  background: #FFFBEB;
+  border: 1px solid #FCD34D;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #92400E;
+}
+
+.sla-badge {
+  background: #FEF3C7;
+  color: #B45309;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 10px;
+}
