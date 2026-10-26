@@ -1,0 +1,346 @@
+/* ==========================================================================
+   DESKTOP SPECIFIC STYLES
+   Layout widescreen para Coordenação de Curso e Núcleo Pedagógico (MTSS)
+   ========================================================================== */
+
+body.desktop-app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--gray-50);
+}
+
+/* Barra Lateral (Sidebar) */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--white);
+  border-right: 1px solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.sidebar .brand {
+  height: 72px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.sidebar .brand-text h1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.2px;
+}
+
+.sidebar .brand-text h1 span {
+  color: var(--primary);
+}
+
+.sidebar .brand-text p {
+  font-size: 11px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.nav-list {
+  padding: 16px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 12px 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.nav-item:hover {
+  background: var(--gray-100);
+  color: var(--gray-900);
+}
+
+.nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.nav-item svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.user-footer {
+  padding: 16px;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+}
+
+.user-meta h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.user-meta p {
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+/* Área Principal */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Barra Superior (Topbar) */
+.topbar {
+  height: 72px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  flex-shrink: 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  width: 360px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.period-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-300);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+/* Área de Visualização com Scroll */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+  display: none;
+}
+
+.content-area.active {
+  display: block;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+
+/* Grade de Métricas e KPIs */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-card.alert-card {
+  border-left: 4px solid var(--alert);
+}
+
+.metric-header {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.metric-val {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.metric-desc {
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+/* Painéis de Conteúdo */
+.panel-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+/* Tabelas Analíticas */
+.table-responsive {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table-responsive th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  color: var(--gray-600);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.table-responsive td {
+  padding: 14px;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  vertical-align: middle;
+}
+
+.table-responsive tr:hover td {
+  background: var(--gray-50);
+}
+
+/* Mapa de Calor por Turma e Dimensão (Abordagem Finlandesa) */
+.heatmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.heatmap-table th {
+  padding: 10px;
+  background: var(--gray-50);
+  text-align: center;
+  border: 1px solid var(--gray-200);
+  font-weight: 700;
+}
+
+.heatmap-table td {
+  padding: 14px;
+  text-align: center;
+  border: 1px solid var(--gray-200);
+  font-weight: 600;
+}
+
+.score-high { background: #DCFCE7; color: #166534; }
+.score-mid { background: #FEF9C3; color: #854D0E; }
+.score-low { background: #FEE2E2; color: #991B1B; }
+
+/* Radar Expandido para Desktop */
+.radar-container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 0;
+}
+
+.radar-visual-desktop {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px dashed var(--gray-300);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, var(--primary-light) 25%, var(--white) 75%);
+}
+
+.radar-point {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+}
