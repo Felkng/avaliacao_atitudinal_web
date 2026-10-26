@@ -13,14 +13,18 @@
 </head>
 <body class="mobile-preview">
 
-  <!-- Controles da Demonstração -->
+  <!-- Controles da Demonstração Superior -->
   <div class="demo-controls">
-    <button class="demo-btn active" onclick="switchScreen('m01', this)">[M01] Turma e Alunos (Prof)</button>
-    <button class="demo-btn" onclick="switchScreen('m02', this)">[M02] Registro Rápido (3 Toques)</button>
-    <button class="demo-btn" onclick="switchScreen('m03', this)">[M03] Radar & Devolutiva (Prof)</button>
-    <button class="demo-btn" onclick="switchScreen('m04', this)">[M04] Painel Formativo (Aluno)</button>
-    <button class="demo-btn" onclick="switchScreen('m05', this)">[M05] Autoavaliação Guiada</button>
-    <button class="demo-btn" onclick="switchScreen('m06', this)">[M06] Diálogo & Contestação</button>
+    <button class="demo-btn active" onclick="switchScreen('m00', this)">[M00] Início & Perfis</button>
+    <button class="demo-btn" onclick="switchScreen('m01', this)">[M01] Minhas Turmas</button>
+    <button class="demo-btn" onclick="switchScreen('m02', this)">[M02] Chamada Atitudinal</button>
+    <button class="demo-btn" onclick="switchScreen('m03', this)">[M03] Registro 3 Toques</button>
+    <button class="demo-btn" onclick="switchScreen('m04', this)">[M04] Radar do Docente</button>
+    <button class="demo-btn" onclick="switchScreen('m05', this)">[M05] Painel do Estudante</button>
+    <button class="demo-btn" onclick="switchScreen('m06', this)">[M06] Autoavaliação</button>
+    <button class="demo-btn" onclick="switchScreen('m07', this)">[M07] Portal da Família</button>
+    <button class="demo-btn" onclick="switchScreen('m08', this)">[M08] Abrir Diálogo</button>
+    <button class="demo-btn" onclick="switchScreen('m09', this)">[M09] Protocolo SLA 48h</button>
   </div>
 
   <div class="device-frame">
@@ -30,9 +34,9 @@
       <span>5G • 100%</span>
     </div>
 
-    <!-- Screen [M01]: Professor - Turma e Alunos -->
-    <div id="m01" class="screen-content active">
-      <div class="app-header" style="border-radius: var(--radius-lg); margin-bottom: 12px; border: 1px solid var(--gray-200);">
+    <!-- [M00]: Início / Seleção de Perfil -->
+    <div id="m00" class="screen-content active">
+      <div class="app-header">
         <div class="logo-group">
           <div class="if-logo-box">
             <svg viewBox="0 0 50 60" width="28" height="34">
@@ -48,222 +52,77 @@
           </div>
           <div class="header-text">
             <h1>IFNMG • <span>AvaliaAtitude</span></h1>
-            <p>Registro Contínuo • Ensino Básico</p>
+            <p>Selecione seu Perfil de Acesso</p>
           </div>
         </div>
-        <div class="badge badge-neutral badge-pill">DOCENTE</div>
       </div>
 
-      <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <div style="font-size: 13px; font-weight: 700;">Turma: 9º Ano B • Matemática</div>
-          <div style="font-size: 11px; color: var(--gray-500);">28 estudantes cadastrados</div>
+      <div style="padding: 16px;">
+        <div class="card" style="border-left: 4px solid var(--primary); margin-bottom: 16px;">
+          <p style="font-size: 12px; color: var(--gray-700); line-height: 1.4;">
+            Bem-vindo ao sistema de avaliação atitudinal e socioemocional do IFNMG. Selecione abaixo a jornada que deseja vivenciar:
+          </p>
         </div>
-        <button class="btn btn-outline btn-sm">Trocar</button>
-      </div>
 
-      <!-- Action: Batch Self-assessment -->
-      <div class="card" style="border-left: 4px solid var(--primary); cursor: pointer;" onclick="goToScreen('m03')">
-        <div style="font-size: 12px; font-weight: 700; color: var(--gray-900);">Autoavaliação Bimestral da Turma</div>
-        <div style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">22 de 28 estudantes responderam • Toque para gerenciar</div>
-      </div>
+        <div class="profile-grid">
+          <!-- Perfil Docente -->
+          <div class="profile-card active" onclick="selectProfile('professor')">
+            <div class="profile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+              </svg>
+            </div>
+            <div style="flex: 1;">
+              <h3>Professor(a)</h3>
+              <p>Registro rápido (3 toques), histórico de evidências e radar por aluno.</p>
+            </div>
+            <span style="font-size: 16px; color: var(--gray-400);">→</span>
+          </div>
 
-      <div class="section-title">Estudantes • Toque para registrar (1º Toque)</div>
+          <!-- Perfil Aluno -->
+          <div class="profile-card" onclick="selectProfile('aluno')">
+            <div class="profile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <div style="flex: 1;">
+              <h3>Estudante</h3>
+              <p>Painel formativo sem ranking punitivo e autoavaliação guiada.</p>
+            </div>
+            <span style="font-size: 16px; color: var(--gray-400);">→</span>
+          </div>
 
-      <!-- Student Card 1 -->
-      <div class="card card-clickable" style="display: flex; justify-content: space-between; align-items: center;" onclick="goToScreen('m02')">
-        <div>
-          <div style="font-size: 14px; font-weight: 700;">Lucas Mendes Silva</div>
-          <div style="font-size: 11px; color: var(--gray-500); margin: 2px 0;">Último: Autonomia • 3 ausências</div>
-          <span class="badge badge-alert">Alerta Pedagógico</span>
+          <!-- Perfil Responsável -->
+          <div class="profile-card" onclick="selectProfile('responsavel')">
+            <div class="profile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+            </div>
+            <div style="flex: 1;">
+              <h3>Família / Responsável</h3>
+              <p>Devolutivas acolhedoras, canal de diálogo transparente e SLA de 48h.</p>
+            </div>
+            <span style="font-size: 16px; color: var(--gray-400);">→</span>
+          </div>
         </div>
-        <button class="btn btn-primary btn-sm">+ Registrar</button>
-      </div>
 
-      <!-- Student Card 2 -->
-      <div class="card card-clickable" style="display: flex; justify-content: space-between; align-items: center;" onclick="goToScreen('m02')">
-        <div>
-          <div style="font-size: 14px; font-weight: 700;">Ana Clara Oliveira</div>
-          <div style="font-size: 11px; color: var(--gray-500); margin: 2px 0;">Último: Colaboração • 6 registros</div>
-          <span class="badge badge-neutral">Regularizado</span>
+        <div style="margin-top: 24px; text-align: center;">
+          <a href="prototipo_interativo_desktop.html" class="btn btn-outline btn-block" style="font-size: 12px; gap: 6px;">
+            <span>Acessar Painel Desktop da Coordenação</span>
+            <span>↗</span>
+          </a>
         </div>
-        <button class="btn btn-primary btn-sm">+ Registrar</button>
-      </div>
-
-      <!-- Student Card 3 -->
-      <div class="card card-clickable" style="display: flex; justify-content: space-between; align-items: center;" onclick="goToScreen('m02')">
-        <div>
-          <div style="font-size: 14px; font-weight: 700;">Gabriel Santos Souza</div>
-          <div style="font-size: 11px; color: var(--gray-500); margin: 2px 0;">Último: Participação • 4 registros</div>
-          <span class="badge badge-neutral">Regularizado</span>
-        </div>
-        <button class="btn btn-primary btn-sm">+ Registrar</button>
       </div>
     </div>
 
-    <!-- Screen [M02]: Professor - Registro Rápido (3 Toques) -->
-    <div id="m02" class="screen-content">
-      <div class="card" style="border-left: 4px solid var(--primary); display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <span class="touch-step-badge">1º Toque Concluído</span>
-          <div style="font-size: 14px; font-weight: 700; margin-top: 4px;">Lucas Mendes Silva</div>
-          <div style="font-size: 11px; color: var(--gray-500);">9º Ano B • Matemática • Registro em aula</div>
-        </div>
-        <button class="btn btn-outline btn-sm" onclick="goToScreen('m01')">Trocar</button>
-      </div>
-
-      <div class="section-title">2º Toque • Selecione a Dimensão Atitudinal</div>
-      <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
-        <div class="card" style="padding: 10px 14px; margin: 0; cursor: pointer;">
-          <div style="font-size: 13px; font-weight: 700;">1. Responsabilidade</div>
-          <div style="font-size: 10px; color: var(--gray-500);">Prazos, materiais didáticos e assiduidade</div>
-        </div>
-        <div class="card highlight-border" style="padding: 10px 14px; margin: 0; cursor: pointer;">
-          <div style="display: flex; justify-content: space-between;">
-            <span style="font-size: 13px; font-weight: 700; color: var(--primary-dark);">2. Colaboração (Selecionado)</span>
-            <span class="badge badge-green">2º Toque</span>
-          </div>
-          <div style="font-size: 10px; color: var(--gray-700);">Trabalho em equipe, respeito e entreajuda</div>
-        </div>
-        <div class="card" style="padding: 10px 14px; margin: 0; cursor: pointer;">
-          <div style="font-size: 13px; font-weight: 700;">3. Autonomia</div>
-          <div style="font-size: 10px; color: var(--gray-500);">Iniciativa, autorregulação e persistência</div>
-        </div>
-        <div class="card" style="padding: 10px 14px; margin: 0; cursor: pointer;">
-          <div style="font-size: 13px; font-weight: 700;">4. Participação</div>
-          <div style="font-size: 10px; color: var(--gray-500);">Envolvimento em discussões e interesse ativo</div>
-        </div>
-        <div class="card" style="padding: 10px 14px; margin: 0; cursor: pointer;">
-          <div style="font-size: 13px; font-weight: 700;">5. Respeito e Convivência</div>
-          <div style="font-size: 10px; color: var(--gray-500);">Normas coletivas e convivência empática</div>
-        </div>
-      </div>
-
-      <div class="section-title">3º Toque • Natureza da Evidência (Não-Punitiva)</div>
-      <div class="nature-grid">
-        <div class="nature-card selected" onclick="selectNature(this)">
-          <div style="font-size: 13px; font-weight: 700;">Consolidada</div>
-          <div style="font-size: 10px; opacity: 0.9;">Evidência positiva</div>
-        </div>
-        <div class="nature-card" onclick="selectNature(this)">
-          <div style="font-size: 13px; font-weight: 700;">Em mediação</div>
-          <div style="font-size: 10px; color: var(--gray-500);">Desenvolvimento</div>
-        </div>
-        <div class="nature-card" onclick="selectNature(this)">
-          <div style="font-size: 13px; font-weight: 700;">Requer apoio</div>
-          <div style="font-size: 10px; color: var(--gray-500);">Atenção formativa</div>
-        </div>
-      </div>
-
-      <div class="section-title" style="margin-top: 14px;">Tags Contextuais (Zero Digitação Obrigatória)</div>
-      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
-        <span class="badge badge-green" style="padding: 6px 10px; cursor: pointer;">Ajudou colegas no grupo</span>
-        <span class="badge badge-neutral" style="padding: 6px 10px; cursor: pointer;">Compartilhou material</span>
-      </div>
-
-      <button class="btn btn-primary btn-block" onclick="goToScreen('m03')">
-        Salvar Evidência e Abrir Histórico (3º Toque)
-      </button>
-    </div>
-
-    <!-- Screen [M03]: Professor - Radar Kindbegrip & Devolutiva -->
-    <div id="m03" class="screen-content">
-      <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <div style="font-size: 15px; font-weight: 700;">Lucas Mendes Silva</div>
-          <div style="font-size: 11px; color: var(--gray-500);">9º Ano B • Matrícula IFNMG: #2026-0812</div>
-        </div>
-        <button class="btn btn-outline btn-sm" onclick="goToScreen('m01')">Voltar</button>
-      </div>
-
-      <!-- Indicadores Integrados (EdInsights) -->
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px;">
-        <div class="card" style="margin: 0; padding: 8px; text-align: center;">
-          <div style="font-size: 10px; color: var(--gray-500);">Frequência</div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--gray-700);">86%</div>
-        </div>
-        <div class="card" style="margin: 0; padding: 8px; text-align: center;">
-          <div style="font-size: 10px; color: var(--gray-500);">Entregas</div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--gray-700);">90%</div>
-        </div>
-        <div class="card alert-border" style="margin: 0; padding: 8px; text-align: center;">
-          <div style="font-size: 10px; color: var(--gray-500);">Alerta Precoce</div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--alert);">Autonomia</div>
-        </div>
-      </div>
-
-      <!-- Radar Comparison (Kindbegrip) -->
-      <div class="card">
-        <div class="section-title">Perfil Multidimensional (5 Dimensões)</div>
-        <div class="radar-box">
-          <div class="radar-visual">
-            <span style="font-size: 10px; font-weight: 700; color: var(--primary-dark);">Radar CASEL</span>
-            <div class="radar-dot" style="top: 15px; left: 56px; background: var(--primary);"></div>
-            <div class="radar-dot" style="top: 45px; right: 12px; background: var(--primary);"></div>
-            <div class="radar-dot" style="bottom: 20px; right: 26px; background: var(--primary);"></div>
-            <div class="radar-dot" style="bottom: 15px; left: 24px; background: var(--primary);"></div>
-            <div class="radar-dot" style="top: 45px; left: 12px; background: var(--alert);"></div>
-          </div>
-          <div class="dimension-bars">
-            <div class="d-bar-row">
-              <div style="display: flex; justify-content: space-between;">
-                <span>Colaboração</span><strong>88%</strong>
-              </div>
-              <div class="d-bar-track"><div class="d-bar-fill" style="width: 88%;"></div></div>
-            </div>
-            <div class="d-bar-row">
-              <div style="display: flex; justify-content: space-between;">
-                <span>Respeito</span><strong>92%</strong>
-              </div>
-              <div class="d-bar-track"><div class="d-bar-fill" style="width: 92%;"></div></div>
-            </div>
-            <div class="d-bar-row">
-              <div style="display: flex; justify-content: space-between;">
-                <span>Participação</span><strong>74%</strong>
-              </div>
-              <div class="d-bar-track"><div class="d-bar-fill" style="width: 74%;"></div></div>
-            </div>
-            <div class="d-bar-row">
-              <div style="display: flex; justify-content: space-between;">
-                <span>Responsabilidade</span><strong>68%</strong>
-              </div>
-              <div class="d-bar-track"><div class="d-bar-fill" style="width: 68%;"></div></div>
-            </div>
-            <div class="d-bar-row">
-              <div style="display: flex; justify-content: space-between;">
-                <span>Autonomia</span><strong style="color: var(--alert);">46%</strong>
-              </div>
-              <div class="d-bar-track"><div class="d-bar-fill" style="width: 46%; background: var(--alert);"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Audit Timeline -->
-      <div class="section-title">Histórico Auditável (2º Bimestre)</div>
-      <div class="card" style="border-left: 4px solid var(--primary);">
-        <div style="font-size: 12px; font-weight: 700; color: var(--gray-900);">Colaboração • Evidência Consolidada</div>
-        <div style="font-size: 11px; margin: 3px 0; color: var(--gray-700);">Ajudou colegas no grupo durante a resolução de exercícios.</div>
-        <div style="font-size: 10px; color: var(--gray-500);">Prof. Marcos (Matemática) • Hoje às 15:20 • Audit #8942</div>
-      </div>
-
-      <div class="card" style="border-left: 4px solid var(--gray-400);">
-        <div style="font-size: 12px; font-weight: 700; color: var(--gray-900);">Autonomia • Em Acompanhamento</div>
-        <div style="font-size: 11px; margin: 3px 0; color: var(--gray-700);">Dificuldade em iniciar tarefa escrita sem mediação do docente.</div>
-        <div style="font-size: 10px; color: var(--gray-500);">Profa. Helena (Português) • 18/10 às 10:15 • Em diálogo com a família</div>
-      </div>
-
-      <button class="btn btn-primary btn-block" onclick="goToScreen('m04')" style="margin-top: 8px;">
-        Simular Visão do Estudante / Família
-      </button>
-    </div>
-
-    <!-- Screen [M04]: Estudante/Família - Painel Formativo -->
-    <div id="m04" class="screen-content">
-      <div class="app-header" style="border-radius: var(--radius-lg); margin-bottom: 12px; border: 1px solid var(--gray-200);">
+    <!-- [M01]: Docente - Minhas Turmas -->
+    <div id="m01" class="screen-content">
+      <div class="app-header">
         <div class="logo-group">
           <div class="if-logo-box">
-            <svg viewBox="0 0 50 60" width="28" height="34">
+            <svg viewBox="0 0 50 60" width="24" height="30">
               <circle cx="9" cy="9" r="8" fill="#CD191E" />
               <rect x="20" y="1" width="13" height="15" rx="3" fill="#2F9E41" />
               <rect x="35" y="1" width="13" height="15" rx="3" fill="#2F9E41" />
@@ -275,157 +134,634 @@
             </svg>
           </div>
           <div class="header-text">
-            <h1>Olá, Lucas!</h1>
-            <p>Seu Painel Socioemocional</p>
+            <h1>Minhas Turmas</h1>
+            <p>Profª. Luciana Rocha • 2º Bimestre</p>
           </div>
         </div>
-        <div class="badge badge-neutral badge-pill">ESTUDANTE</div>
+        <button class="btn btn-sm btn-outline" onclick="goToScreen('m00')">Perfil</button>
       </div>
 
-      <!-- LGPD Shield -->
-      <div class="card" style="border-left: 4px solid var(--primary);">
-        <div style="font-size: 11px; font-weight: 700; color: var(--gray-900);">Ambiente Seguro e Formativo (LGPD)</div>
-        <div style="font-size: 10px; color: var(--gray-600); margin-top: 2px;">Seus dados são individuais e confidenciais. Não existem rankings nem comparações públicas.</div>
-      </div>
+      <div style="padding: 16px;">
+        <div class="card" style="margin-bottom: 14px; background: linear-gradient(135deg, var(--white), var(--primary-light));">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span class="badge badge-green">Registro Semanal Ativo</span>
+            <span style="font-size: 11px; color: var(--gray-500); font-weight: 600;">Meta: 3 obs/aluno</span>
+          </div>
+          <h3 style="font-size: 14px; margin-bottom: 4px;">Atividade Atitudinal Recente</h3>
+          <p style="font-size: 12px; color: var(--gray-600);">84% dos estudantes da sua grade já possuem ao menos uma evidência formativa registrada neste mês.</p>
+        </div>
 
-      <!-- Self-assessment Action Card -->
-      <div class="card card-clickable highlight-border" onclick="goToScreen('m05')">
-        <span class="badge badge-green">Autoavaliação Aberta</span>
-        <div style="font-size: 14px; font-weight: 700; margin: 4px 0; color: var(--gray-900);">Sua Autoavaliação do 2º Bimestre está aberta</div>
-        <div style="font-size: 11px; color: var(--primary); font-weight: 600;">Toque para refletir sobre seus avanços</div>
-      </div>
+        <div class="section-title">Turmas sob sua Regência</div>
 
-      <div class="section-title">Minha Jornada de Desenvolvimento (5 Dimensões)</div>
-      <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
-        <div class="card" style="margin: 0; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; background: var(--primary-light); border-color: var(--primary-border);">
-          <div style="font-size: 12px; font-weight: 700;">Colaboração</div>
-          <span class="badge badge-green">Consolidada</span>
+        <!-- Turma 1: 9º B -->
+        <div class="card card-clickable" onclick="selectTurma('9º Ano B - Ensino Fundamental')">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div>
+              <h3 style="font-size: 14px; font-weight: 700;">9º Ano B</h3>
+              <p style="font-size: 11px; color: var(--gray-500);">Ensino Fundamental • 32 Alunos</p>
+            </div>
+            <span class="badge badge-neutral">Sala 14</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray-600); border-top: 1px solid var(--gray-100); padding-top: 8px;">
+            <span>Último registro: Hoje, 08:30</span>
+            <span style="color: var(--primary); font-weight: 700;">Abrir Chamada →</span>
+          </div>
         </div>
-        <div class="card" style="margin: 0; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; background: var(--primary-light); border-color: var(--primary-border);">
-          <div style="font-size: 12px; font-weight: 700;">Respeito e Convivência</div>
-          <span class="badge badge-green">Consolidada</span>
+
+        <!-- Turma 2: 9º A -->
+        <div class="card card-clickable" onclick="selectTurma('9º Ano A - Ensino Fundamental')">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div>
+              <h3 style="font-size: 14px; font-weight: 700;">9º Ano A</h3>
+              <p style="font-size: 11px; color: var(--gray-500);">Ensino Fundamental • 30 Alunos</p>
+            </div>
+            <span class="badge badge-neutral">Sala 12</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray-600); border-top: 1px solid var(--gray-100); padding-top: 8px;">
+            <span>Último registro: Ontem</span>
+            <span style="color: var(--primary); font-weight: 700;">Abrir Chamada →</span>
+          </div>
         </div>
-        <div class="card" style="margin: 0; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="font-size: 12px; font-weight: 700;">Participação</div>
-          <span class="badge badge-neutral">Em evolução</span>
-        </div>
-        <div class="card" style="margin: 0; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="font-size: 12px; font-weight: 700;">Responsabilidade</div>
-          <span class="badge badge-neutral">Em evolução</span>
-        </div>
-        <div class="card" style="margin: 0; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="font-size: 12px; font-weight: 700;">Autonomia</div>
-          <span class="badge badge-neutral">Foco de apoio</span>
+
+        <!-- Turma 3: 1º Info -->
+        <div class="card card-clickable" onclick="selectTurma('1º Ano Técnico em Informática')">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div>
+              <h3 style="font-size: 14px; font-weight: 700;">1º Info Integrado</h3>
+              <p style="font-size: 11px; color: var(--gray-500);">Ensino Médio Técnico • 35 Alunos</p>
+            </div>
+            <span class="badge badge-neutral">Lab 02</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray-600); border-top: 1px solid var(--gray-100); padding-top: 8px;">
+            <span>Último registro: 23/10</span>
+            <span style="color: var(--primary); font-weight: 700;">Abrir Chamada →</span>
+          </div>
         </div>
       </div>
-
-      <button class="btn btn-outline btn-block" onclick="goToScreen('m06')" style="border-color: var(--primary); color: var(--primary-dark);">
-        Ver Histórico Completo / Solicitar Diálogo
-      </button>
     </div>
 
-    <!-- Screen [M05]: Estudante - Autoavaliação Guiada -->
+    <!-- [M02]: Docente - Chamada Atitudinal & Lista de Alunos -->
+    <div id="m02" class="screen-content">
+      <div class="app-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m01')">←</button>
+          <div>
+            <h1 id="currentTurmaTitle" style="font-size: 14px; font-weight: 700;">9º Ano B</h1>
+            <p style="font-size: 11px; color: var(--gray-500);">32 estudantes matriculados</p>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-primary" onclick="startQuickRecord('Lucas Mendes Silva')">+ Registro</button>
+      </div>
+
+      <div style="padding: 12px 16px;">
+        <!-- Busca Rápida -->
+        <div class="mobile-search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gray-400)">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input type="text" id="mobileSearchInput" placeholder="Buscar aluno por nome..." oninput="filterMobileStudents()">
+        </div>
+
+        <!-- Filtros em Carrossel Horizontal -->
+        <div class="chips-scroll">
+          <div class="filter-chip active" onclick="filterByDimensionChip(this, 'all')">Todas</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'cooperacao')">Cooperação</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'autogestao')">Autogestão</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'engajamento')">Engajamento</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'resiliencia')">Resiliência</div>
+        </div>
+
+        <div id="studentListContainer">
+          <!-- Aluno 1: Lucas Mendes -->
+          <div class="card card-clickable student-row-card" data-name="Lucas Mendes Silva" data-dim="cooperacao" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Lucas Mendes Silva', '2024.1.09B.01')">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="avatar-box">LM</div>
+              <div>
+                <h4 style="font-size: 13px; font-weight: 700;">Lucas Mendes Silva</h4>
+                <p style="font-size: 11px; color: var(--gray-500);">Última: Cooperação • Hoje 08:30</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="badge badge-green">Consistente</span>
+              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
+            </div>
+          </div>
+
+          <!-- Aluno 2: Beatriz Santos -->
+          <div class="card card-clickable student-row-card" data-name="Beatriz Santos Oliveira" data-dim="autogestao" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Beatriz Santos Oliveira', '2024.1.09B.02')">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="avatar-box" style="background: #EFF6FF; color: #1D4ED8;">BS</div>
+              <div>
+                <h4 style="font-size: 13px; font-weight: 700;">Beatriz Santos Oliveira</h4>
+                <p style="font-size: 11px; color: var(--gray-500);">Última: Autogestão • Ontem</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="badge badge-neutral">Sem pendências</span>
+              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
+            </div>
+          </div>
+
+          <!-- Aluno 3: Gabriel Costa -->
+          <div class="card card-clickable student-row-card" data-name="Gabriel Costa Souza" data-dim="engajamento" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Gabriel Costa Souza', '2024.1.09B.03')">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="avatar-box" style="background: #FEF2F2; color: #DC2626;">GC</div>
+              <div>
+                <h4 style="font-size: 13px; font-weight: 700;">Gabriel Costa Souza</h4>
+                <p style="font-size: 11px; color: var(--alert);">Queda de pontualidade • 3 dias</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="badge badge-alert">Atenção</span>
+              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
+            </div>
+          </div>
+
+          <!-- Aluno 4: Julia Almeida -->
+          <div class="card card-clickable student-row-card" data-name="Julia Almeida Lima" data-dim="resiliencia" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Julia Almeida Lima', '2024.1.09B.04')">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="avatar-box" style="background: #FDF2F8; color: #DB2777;">JA</div>
+              <div>
+                <h4 style="font-size: 13px; font-weight: 700;">Julia Almeida Lima</h4>
+                <p style="font-size: 11px; color: var(--gray-500);">Última: Resiliência • Há 4 dias</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="badge badge-green">Consistente</span>
+              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- [M03]: Docente - Registro Rápido em 3 Toques -->
+    <div id="m03" class="screen-content">
+      <div class="app-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m02')">←</button>
+          <div>
+            <h1 style="font-size: 14px; font-weight: 700;">Registro Rápido</h1>
+            <p style="font-size: 11px; color: var(--gray-500);">Formulário de 3 toques</p>
+          </div>
+        </div>
+        <span class="badge badge-green">9º Ano B</span>
+      </div>
+
+      <div style="padding: 14px 16px;">
+        <!-- Identificação do Estudante Ativo -->
+        <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div class="avatar-box" style="width: 42px; height: 42px;">LM</div>
+          <div>
+            <h3 id="quickRecordStudentName" style="font-size: 14px; font-weight: 700;">Lucas Mendes Silva</h3>
+            <p id="quickRecordStudentMat" style="font-size: 11px; color: var(--gray-500);">Matrícula: 2024.1.09B • 9º Ano B</p>
+          </div>
+        </div>
+
+        <!-- Toque 1: Dimensão BNCC -->
+        <div class="section-title">Toque 1: Dimensão Socioemocional</div>
+        <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
+          <label class="card card-clickable" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 12px;">
+            <input type="radio" name="mobile_dim" checked>
+            <span style="font-size: 13px; font-weight: 600;">Cooperação e Empatia (Trabalho Coletivo)</span>
+          </label>
+          <label class="card card-clickable" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 12px;">
+            <input type="radio" name="mobile_dim">
+            <span style="font-size: 13px; font-weight: 600;">Autogestão e Pontualidade</span>
+          </label>
+          <label class="card card-clickable" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 12px;">
+            <input type="radio" name="mobile_dim">
+            <span style="font-size: 13px; font-weight: 600;">Engajamento e Comunicação</span>
+          </label>
+        </div>
+
+        <!-- Toque 2: Natureza Pedagógica -->
+        <div class="section-title">Toque 2: Natureza da Observação</div>
+        <div class="nature-grid" style="margin-bottom: 12px;">
+          <div class="nature-card selected" onclick="selectNature(this, 'formativa')">
+            <div style="font-size: 12px; font-weight: 700; color: var(--primary);">Formativa</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;">Comportamento positivo</div>
+          </div>
+          <div class="nature-card" onclick="selectNature(this, 'atencao')">
+            <div style="font-size: 12px; font-weight: 700; color: var(--alert);">Ponto de Atenção</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;">Demanda mediação</div>
+          </div>
+          <div class="nature-card" onclick="selectNature(this, 'neutra')">
+            <div style="font-size: 12px; font-weight: 700; color: var(--gray-700);">Neutra</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;">Fato contextual</div>
+          </div>
+        </div>
+
+        <!-- Toque 3: Evidência Observável -->
+        <div class="section-title">Toque 3: Evidência Objetiva (Chips)</div>
+        <div class="evidence-chips" style="margin-bottom: 16px;">
+          <div class="ev-chip selected" onclick="toggleEvidenceChip(this)">Apoio ativo aos colegas</div>
+          <div class="ev-chip" onclick="toggleEvidenceChip(this)">Escuta acolhedora</div>
+          <div class="ev-chip" onclick="toggleEvidenceChip(this)">Mediação de conflitos</div>
+          <div class="ev-chip" onclick="toggleEvidenceChip(this)">Postura receptiva</div>
+          <div class="ev-chip" onclick="toggleEvidenceChip(this)">Liderança compartilhada</div>
+        </div>
+
+        <button class="btn btn-primary btn-block" onclick="submitQuickRecord()">
+          <span>✓ Salvar Registro Imediato</span>
+        </button>
+
+        <div style="text-align: center; margin-top: 10px;">
+          <button class="btn btn-sm btn-outline" style="border: none; color: var(--gray-600); font-size: 11px;" onclick="openMobileModal('modalExtraEvidence')">
+            + Adicionar anotação contextual / foto de caderno
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- [M04]: Docente - Histórico e Radar do Aluno -->
+    <div id="m04" class="screen-content">
+      <div class="app-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m02')">←</button>
+          <div>
+            <h1 style="font-size: 14px; font-weight: 700;">Prontuário Atitudinal</h1>
+            <p style="font-size: 11px; color: var(--gray-500);">Visão do Professor</p>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-primary" onclick="requestSelfAssessmentDocente()">Autoavaliação</button>
+      </div>
+
+      <div style="padding: 14px 16px;">
+        <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div class="avatar-box" style="width: 44px; height: 44px;">LM</div>
+          <div style="flex: 1;">
+            <h3 style="font-size: 14px; font-weight: 700;">Lucas Mendes Silva</h3>
+            <p style="font-size: 11px; color: var(--gray-500);">9º Ano B • Matrícula 2024.1.09B.01</p>
+          </div>
+          <span class="badge badge-green">8.8 Geral</span>
+        </div>
+
+        <!-- Radar & Barras de Dimensões -->
+        <div class="card" style="margin-bottom: 12px;">
+          <div class="section-title">Equilíbrio Socioemocional (Radar)</div>
+          <div class="radar-box">
+            <div class="radar-visual">
+              <div class="radar-dot" style="top:18px; left:56px; background:var(--primary);"></div>
+              <div class="radar-dot" style="top:56px; left:94px; background:var(--primary);"></div>
+              <div class="radar-dot" style="top:92px; left:78px; background:var(--primary);"></div>
+              <div class="radar-dot" style="top:92px; left:34px; background:var(--primary);"></div>
+              <div class="radar-dot" style="top:56px; left:18px; background:var(--primary);"></div>
+              <span style="font-size:11px; font-weight:700; color:var(--primary-dark);">8.8</span>
+            </div>
+            <div class="dimension-bars">
+              <div class="d-bar-row">
+                <div style="display:flex; justify-content:space-between;"><span>Cooperação</span><strong>9.2</strong></div>
+                <div class="d-bar-track"><div class="d-bar-fill" style="width: 92%;"></div></div>
+              </div>
+              <div class="d-bar-row">
+                <div style="display:flex; justify-content:space-between;"><span>Autogestão</span><strong>8.4</strong></div>
+                <div class="d-bar-track"><div class="d-bar-fill" style="width: 84%;"></div></div>
+              </div>
+              <div class="d-bar-row">
+                <div style="display:flex; justify-content:space-between;"><span>Engajamento</span><strong>9.0</strong></div>
+                <div class="d-bar-track"><div class="d-bar-fill" style="width: 90%;"></div></div>
+              </div>
+              <div class="d-bar-row">
+                <div style="display:flex; justify-content:space-between;"><span>Resiliência</span><strong>8.6</strong></div>
+                <div class="d-bar-track"><div class="d-bar-fill" style="width: 86%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linha do Tempo de Observações -->
+        <div class="section-title">Histórico de Evidências Recentes</div>
+        <div class="card" style="margin-bottom: 8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
+            <span class="badge badge-green">Cooperação</span>
+            <span style="font-size: 11px; color: var(--gray-400);">Hoje, 08:30</span>
+          </div>
+          <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">Apoio ativo aos colegas no trabalho de campo.</p>
+          <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: Profª. Luciana Rocha (Geografia)</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 12px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
+            <span class="badge badge-green">Autogestão</span>
+            <span style="font-size: 11px; color: var(--gray-400);">24/10/2026</span>
+          </div>
+          <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">Entrega antecipada do relatório em grupo.</p>
+          <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: Prof. Marcos Prado (História)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- [M05]: Estudante - Painel Formativo Sem Rótulos -->
     <div id="m05" class="screen-content">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <span style="font-size: 11px; font-weight: 700; color: var(--gray-700);">AUTOAVALIAÇÃO • PASSO 3 DE 5</span>
-        <span style="font-size: 11px; color: var(--gray-500);">60% concluído</span>
-      </div>
-      <div style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden; margin-bottom: 14px;">
-        <div style="width: 60%; height: 100%; background: var(--primary);"></div>
-      </div>
-
-      <div class="card" style="border-left: 4px solid var(--primary);">
-        <span class="badge badge-green">Dimensão: Autonomia</span>
-        <div style="font-size: 15px; font-weight: 700; margin: 8px 0; color: var(--gray-900);">Como você se sente ao iniciar tarefas sozinho e lidar com dúvidas em sala?</div>
-        <div style="font-size: 11px; color: var(--gray-500);">Sua reflexão apoia a devolutiva formativa com seus professores.</div>
-      </div>
-
-      <div class="section-title">Selecione o nível que melhor descreve você hoje:</div>
-      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
-        <div class="card highlight-border card-clickable" onclick="goToScreen('m04')">
-          <div style="font-size: 13px; font-weight: 700; color: var(--primary-dark);">Nível 1: Preciso de apoio para começar (Selecionado)</div>
-          <div style="font-size: 11px; color: var(--gray-600); margin-top: 2px;">Às vezes sinto dificuldade nas tarefas escritas e preciso do professor por perto no início.</div>
+      <div class="app-header">
+        <div class="logo-group">
+          <div class="avatar-box" style="width: 34px; height: 34px;">LM</div>
+          <div class="header-text">
+            <h1>Olá, Lucas!</h1>
+            <p>Seu Percurso Formativo • 2026</p>
+          </div>
         </div>
-        <div class="card card-clickable" onclick="goToScreen('m04')">
-          <div style="font-size: 13px; font-weight: 700;">Nível 2: Estou praticando e evoluindo</div>
-          <div style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Consigo fazer a maior parte sozinho, mas ainda tenho dúvidas frequentes.</div>
-        </div>
-        <div class="card card-clickable" onclick="goToScreen('m04')">
-          <div style="font-size: 13px; font-weight: 700;">Nível 3: Faço com segurança e iniciativa</div>
-          <div style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Organizo meu tempo com autonomia e ajudo colegas.</div>
-        </div>
+        <button class="btn btn-sm btn-outline" onclick="goToScreen('m00')">Trocar</button>
       </div>
 
-      <div class="form-group">
-        <label class="form-label">MENSAGEM PARA O PROFESSOR (OPCIONAL)</label>
-        <textarea class="form-control" placeholder="Gostaria de mais exemplos práticos antes do exercício individual..."></textarea>
-      </div>
+      <div style="padding: 14px 16px;">
+        <!-- Banner Formativo Positivo -->
+        <div class="card" style="background: linear-gradient(135deg, #F0FDF4, #DCFCE7); border-color: var(--primary-border); margin-bottom: 14px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <span class="badge badge-green">Percurso em Alta</span>
+            <span style="font-size:11px; color:var(--primary-dark); font-weight:700;">+14% de engajamento</span>
+          </div>
+          <h3 style="font-size:14px; margin-bottom:4px; color:var(--gray-900);">Parabéns pela colaboração em equipe!</h3>
+          <p style="font-size:12px; color:var(--gray-700); line-height:1.4;">
+            Seus professores destacaram seu espírito acolhedor durante os projetos coletivos deste bimestre.
+          </p>
+        </div>
 
-      <button class="btn btn-primary btn-block" onclick="goToScreen('m04')">
-        Salvar Reflexão e Concluir
-      </button>
+        <!-- Gráfico Formativo de Autoeficácia -->
+        <div class="card" style="margin-bottom: 12px;">
+          <div class="section-title">Suas Competências em Desenvolvimento</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Trabalho Coletivo & Empatia</span>
+                <strong style="color: var(--primary);">Consolidada</strong>
+              </div>
+              <div class="d-bar-track"><div class="d-bar-fill" style="width: 90%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Organização de Estudos & Prazos</span>
+                <strong style="color: var(--primary);">Em Expansão</strong>
+              </div>
+              <div class="d-bar-track"><div class="d-bar-fill" style="width: 82%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Comunicação e Escuta Ativa</span>
+                <strong style="color: var(--primary);">Consolidada</strong>
+              </div>
+              <div class="d-bar-track"><div class="d-bar-fill" style="width: 88%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chamada de Autoavaliação Guiada -->
+        <div class="card card-clickable" style="border: 1.5px solid var(--primary); background: var(--white); margin-bottom: 12px;" onclick="goToScreen('m06')">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h4 style="font-size: 13px; font-weight: 700; color: var(--primary-dark);">Autoavaliação do 2º Bimestre Aberta</h4>
+              <p style="font-size: 11px; color: var(--gray-600); margin-top: 2px;">4 perguntas reflexivas sobre seu desenvolvimento.</p>
+            </div>
+            <span class="btn btn-sm btn-primary">Responder →</span>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <button class="btn btn-sm btn-outline" style="font-size: 11px;" onclick="goToScreen('m08')">
+            Dúvida sobre algum registro? Abra um diálogo formativo
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- Screen [M06]: Família/Estudante - Diálogo e Contestação -->
+    <!-- [M06]: Estudante - Autoavaliação Guiada -->
     <div id="m06" class="screen-content">
-      <div class="section-title">Registro Selecionado (Auditoria Transparente)</div>
-      <div class="card" style="border-left: 4px solid var(--gray-400);">
-        <span class="badge badge-neutral">Dimensão: Autonomia</span>
-        <div style="font-size: 13px; font-weight: 700; margin: 4px 0; color: var(--gray-900);">“Dificuldade em iniciar tarefa escrita sem mediação.”</div>
-        <div style="font-size: 11px; color: var(--gray-600);">Registrado por: Profa. Helena (Língua Portuguesa)</div>
-        <div style="font-size: 10px; color: var(--gray-500);">18/10 às 10:15 • Identificador: #8819-IFNMG</div>
-      </div>
-
-      <div class="section-title">Canal de Diálogo e Contraditório</div>
-      <div class="card">
-        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px;">Finalidade desta manifestação:</div>
-        
-        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 10px; cursor: pointer;">
-          <input type="radio" name="contest_type" checked>
-          <span><strong>Contextualizar episódio</strong> (saúde/família) e pedir revisão</span>
-        </label>
-        
-        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 10px; cursor: pointer;">
-          <input type="radio" name="contest_type">
-          <span>Solicitar atendimento presencial com Coordenação / NAPNE</span>
-        </label>
-
-        <div style="font-size: 11px; font-weight: 600; margin-top: 12px; margin-bottom: 4px;">Mensagem explicativa:</div>
-        <div style="background: var(--gray-50); padding: 10px; border-radius: var(--radius-md); font-size: 11px; color: var(--gray-700); border: 1px solid var(--gray-300);">
-          “Olá Profa. Helena! Na semana de 18/10 o Lucas estava em ajuste de medicação de rotina e teve sonolência matinal. Já entregamos o atestado na coordenação.”
+      <div class="app-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m05')">←</button>
+          <div>
+            <h1 style="font-size: 14px; font-weight: 700;">Sua Autoavaliação</h1>
+            <p style="font-size: 11px; color: var(--gray-500);">2º Bimestre • Reflexão Pessoal</p>
+          </div>
         </div>
+        <span class="badge badge-green">Etapa 1/1</span>
       </div>
 
-      <div class="card" style="border-left: 4px solid var(--primary);">
-        <div style="font-size: 11px; font-weight: 700; color: var(--gray-900);">Garantia Institucional de Resposta (48h úteis)</div>
-        <div style="font-size: 10px; color: var(--gray-600); margin-top: 2px;">O núcleo pedagógico analisa a manifestação e agenda devolutiva com o professor.</div>
-      </div>
+      <div style="padding: 14px 16px;">
+        <!-- Pergunta 1 -->
+        <div class="card" style="margin-bottom: 12px;">
+          <p style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">1. Como você avalia sua cooperação e escuta com os colegas durante atividades em grupo?</p>
+          <div class="scale-grid">
+            <div class="scale-btn" onclick="setRating('q1', 1, this)">Em início</div>
+            <div class="scale-btn" onclick="setRating('q1', 2, this)">Em desenv.</div>
+            <div class="scale-btn selected" onclick="setRating('q1', 3, this)">Boa</div>
+            <div class="scale-btn" onclick="setRating('q1', 4, this)">Muito boa</div>
+          </div>
+        </div>
 
-      <button class="btn btn-primary btn-block" onclick="goToScreen('m04')">
-        Enviar Solicitação de Diálogo
-      </button>
-      <button class="btn btn-outline btn-block" onclick="goToScreen('m01')" style="margin-top: 8px;">
-        Voltar ao Fluxo do Professor ([M01])
-      </button>
+        <!-- Pergunta 2 -->
+        <div class="card" style="margin-bottom: 12px;">
+          <p style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">2. Você conseguiu planejar seus horários para cumprir tarefas e chegar no horário?</p>
+          <div class="scale-grid">
+            <div class="scale-btn" onclick="setRating('q2', 1, this)">Em início</div>
+            <div class="scale-btn" onclick="setRating('q2', 2, this)">Em desenv.</div>
+            <div class="scale-btn" onclick="setRating('q2', 3, this)">Boa</div>
+            <div class="scale-btn selected" onclick="setRating('q2', 4, this)">Muito boa</div>
+          </div>
+        </div>
+
+        <!-- Pergunta 3 -->
+        <div class="card" style="margin-bottom: 12px;">
+          <p style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">3. Diante de dificuldades em matérias desafiadoras, você procurou ajuda ou persistiu?</p>
+          <div class="scale-grid">
+            <div class="scale-btn" onclick="setRating('q3', 1, this)">Em início</div>
+            <div class="scale-btn" onclick="setRating('q3', 2, this)">Em desenv.</div>
+            <div class="scale-btn selected" onclick="setRating('q3', 3, this)">Boa</div>
+            <div class="scale-btn" onclick="setRating('q3', 4, this)">Muito boa</div>
+          </div>
+        </div>
+
+        <!-- Campo de Reflexão Escrita -->
+        <div class="card" style="margin-bottom: 14px;">
+          <label style="display:block; font-size:12px; font-weight:700; margin-bottom:6px;">O que você mais se orgulha de ter aprendido sobre si mesmo neste bimestre?</label>
+          <textarea style="width: 100%; height: 70px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 8px; font-size: 12px; resize: none;" placeholder="Escreva aqui com suas próprias palavras...">Consegui colaborar melhor com meu grupo na maquete de Geografia e melhorei minha pontualidade matinal.</textarea>
+        </div>
+
+        <button class="btn btn-primary btn-block" onclick="submitSelfAssessment()">
+          <span>✓ Enviar Minha Autoavaliação</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Bottom Nav -->
+    <!-- [M07]: Família / Responsáveis - Portal Acolhedor -->
+    <div id="m07" class="screen-content">
+      <div class="app-header">
+        <div class="logo-group">
+          <div class="avatar-box" style="width: 34px; height: 34px; background: #FEF3C7; color: #B45309;">MS</div>
+          <div class="header-text">
+            <h1>Espaço da Família</h1>
+            <p>Acompanhamento de Lucas Mendes</p>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline" onclick="goToScreen('m00')">Trocar</button>
+      </div>
+
+      <div style="padding: 14px 16px;">
+        <div class="card" style="margin-bottom: 12px; border-left: 4px solid var(--primary);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <span class="badge badge-green">Frequência: 96%</span>
+            <span style="font-size:11px; color:var(--gray-500);">9º Ano B</span>
+          </div>
+          <h3 style="font-size:13px; font-weight:700; margin-bottom:4px;">Relatório Formativo Quinzenal</h3>
+          <p style="font-size:12px; color:var(--gray-700); line-height:1.4;">
+            Lucas apresenta excelente convivência cooperativa com os colegas e assiduidade regular às aulas.
+          </p>
+        </div>
+
+        <div class="section-title">Orientações de Apoio em Casa</div>
+        <div class="card" style="margin-bottom: 12px;">
+          <p style="font-size: 12px; color: var(--gray-800); line-height: 1.4;">
+            <strong>Dica Pedagógica:</strong> Incentive Lucas a manter a rotina de revisão diária de 30 minutos após o jantar para fortalecer a autonomia na transição para o Ensino Médio.
+          </p>
+        </div>
+
+        <div class="section-title">Canais de Contato com a Escola</div>
+        <div class="card card-clickable" style="border: 1.5px solid var(--gray-200); margin-bottom: 10px;" onclick="goToScreen('m08')">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="font-size: 13px; font-weight: 700;">Canal de Diálogo & Justificativas</h4>
+              <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Comunique alterações de saúde ou solicite revisão.</p>
+            </div>
+            <span style="color: var(--primary); font-weight: 700;">Abrir →</span>
+          </div>
+        </div>
+
+        <div class="card card-clickable" style="border: 1.5px solid var(--gray-200);" onclick="goToScreen('m09')">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="font-size: 13px; font-weight: 700;">Protocolos de Diálogo Anteriores</h4>
+              <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Consulte pareceres do núcleo pedagógico.</p>
+            </div>
+            <span class="badge badge-neutral">1 Protocolo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- [M08]: Família - Mecanismo de Diálogo & Contestação -->
+    <div id="m08" class="screen-content">
+      <div class="app-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m07')">←</button>
+          <div>
+            <h1 style="font-size: 14px; font-weight: 700;">Abertura de Diálogo</h1>
+            <p style="font-size: 11px; color: var(--gray-500);">Canal Transparente com a Escola</p>
+          </div>
+        </div>
+        <span class="badge badge-neutral">SLA 48h</span>
+      </div>
+
+      <div style="padding: 14px 16px;">
+        <div class="sla-box">
+          <span>Garantia de resposta em até 48 horas úteis</span>
+          <span class="sla-badge">SLA Formal</span>
+        </div>
+
+        <div class="card" style="margin-bottom: 12px;">
+          <label style="display:block; font-size:12px; font-weight:700; margin-bottom:4px;">Selecione o registro ou motivo:</label>
+          <select style="width:100%; padding:8px; border:1px solid var(--gray-300); border-radius:6px; font-size:12px; background:var(--white);">
+            <option>Registro de sonolência/atenção do dia 24/10</option>
+            <option>Informar início de medicação / atestado médico</option>
+            <option>Solicitar reunião com o Núcleo Pedagógico (NAPNE)</option>
+            <option>Outra observação contextual familiar</option>
+          </select>
+        </div>
+
+        <div class="card" style="margin-bottom: 12px;">
+          <label style="display:block; font-size:12px; font-weight:700; margin-bottom:4px;">Contexto e Justificativa da Família:</label>
+          <textarea id="dialogueReasonInput" style="width:100%; height:90px; border:1px solid var(--gray-300); border-radius:6px; padding:8px; font-size:12px; resize:none;">Gostaríamos de informar que o Lucas iniciou tratamento com anti-histamínico receitado pelo médico nesta semana, o que tem gerado sonolência no primeiro horário. O atestado foi anexado.</textarea>
+        </div>
+
+        <div class="card" style="margin-bottom: 14px; border: 1px dashed var(--gray-300); text-align: center; padding: 12px;">
+          <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 4px;">Anexo: atestado_medico_outubro.pdf (1.2 MB)</p>
+          <span class="badge badge-green">Documento Anexado</span>
+        </div>
+
+        <button class="btn btn-primary btn-block" onclick="submitFamilyContestation()">
+          <span>✓ Enviar Pedido de Diálogo</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- [M09]: Família - Protocolo SLA 48h & Parecer Homologado -->
+    <div id="m09" class="screen-content">
+      <div class="app-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m07')">←</button>
+          <div>
+            <h1 style="font-size: 14px; font-weight: 700;">Protocolo #CONT-2026-89</h1>
+            <p style="font-size: 11px; color: var(--gray-500);">Acompanhamento da Solicitação</p>
+          </div>
+        </div>
+        <span class="badge badge-green">Concluído</span>
+      </div>
+
+      <div style="padding: 14px 16px;">
+        <div class="card" style="margin-bottom: 12px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="font-size:11px; color:var(--gray-500);">Aberto em: 25/10/2026 às 14:10</span>
+            <span class="badge badge-green">Homologado</span>
+          </div>
+          <h4 style="font-size:13px; font-weight:700;">Justificativa Médica Acolhida</h4>
+          <p style="font-size:11px; color:var(--gray-600); margin-top:2px;">Estudante: Lucas Mendes Silva • 9º Ano B</p>
+        </div>
+
+        <div class="card" style="background: var(--primary-light); border-color: var(--primary-border); margin-bottom: 12px;">
+          <div class="section-title" style="color: var(--primary-dark);">Parecer Oficial do Núcleo Pedagógico</div>
+          <p style="font-size: 12px; color: var(--gray-800); line-height: 1.4; margin-top: 4px;">
+            "Atestado médico acolhido pelo núcleo pedagógico. A equipe docente foi orientada quanto à sonolência matinal e à adaptação do ritmo nas semanas de ajuste terapêutico. O registro atitudinal foi devidamente retificado para preservar a trajetória socioemocional formativa do estudante."
+          </p>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--primary-dark); font-weight: 700;">
+            Assinado por: Profª. Cristina Prado (Coordenação Pedagógica)
+          </div>
+        </div>
+
+        <button class="btn btn-outline btn-block" onclick="goToScreen('m07')">
+          <span>Voltar ao Espaço da Família</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de Navegação Inferior (Fixa) -->
     <div class="bottom-nav">
       <div class="nav-tab active" onclick="goToScreen('m01')">
-        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         <span>Turmas</span>
       </div>
-      <div class="nav-tab" onclick="goToScreen('m02')">
-        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-        <span>Registrar</span>
-      </div>
       <div class="nav-tab" onclick="goToScreen('m03')">
-        <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>
-        <span>Histórico</span>
+        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Registro</span>
       </div>
       <div class="nav-tab" onclick="goToScreen('m04')">
+        <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>
+        <span>Radar</span>
+      </div>
+      <div class="nav-tab" onclick="goToScreen('m05')">
         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         <span>Aluno</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Evidência Extra / Anotação Confidencial -->
+  <div id="modalExtraEvidence" class="modal-backdrop">
+    <div class="modal-container" style="max-width: 350px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="font-size: 14px;">Evidência Contextual Complementar</h3>
+        <button class="modal-close" onclick="closeMobileModal('modalExtraEvidence')">×</button>
+      </div>
+      <div class="modal-body" style="gap: 10px;">
+        <p style="font-size: 12px; color: var(--gray-600);">Adicione notas pedagógicas que auxiliem o núcleo multidisciplinar:</p>
+        <textarea style="width: 100%; height: 75px; border: 1px solid var(--gray-300); border-radius: 6px; padding: 8px; font-size: 12px; resize: none;" placeholder="Ex: Demonstrou empatia espontânea auxiliando um colega com dificuldade motora no exercício..."></textarea>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="showToast('Gravador de áudio pedagógico ativado (30s)'); closeMobileModal('modalExtraEvidence');">🎤 Gravar Áudio</button>
+          <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="showToast('Foto do caderno pedagógico anexada'); closeMobileModal('modalExtraEvidence');">📷 Foto Caderno</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm" onclick="closeMobileModal('modalExtraEvidence')">Cancelar</button>
+        <button class="btn-sm primary" onclick="showToast('Anotação contextual vinculada ao registro!'); closeMobileModal('modalExtraEvidence');">Salvar Nota</button>
       </div>
     </div>
   </div>
