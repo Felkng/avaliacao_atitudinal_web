@@ -61,7 +61,7 @@
     </div>
 
     <div class="user-footer">
-      <div class="avatar-box">CP</div>
+      <div class="avatar-box" style="background: var(--primary-light); color: var(--primary-dark);">CP</div>
       <div class="user-meta">
         <h4 style="font-size: 13px; font-weight: 700;">Profª. Cristina Prado</h4>
         <p style="font-size: 11px; color: var(--gray-500);">Coordenação Pedagógica</p>
@@ -73,20 +73,25 @@
   <main class="main-wrapper">
     <!-- Topbar -->
     <header class="topbar">
-      <div class="topbar-search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gray-400)">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-        </svg>
-        <input type="text" id="searchInput" placeholder="Filtrar estudante, matrícula, turma ou indicador..." oninput="filterTable()">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div class="topbar-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gray-400)">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Filtrar estudante, matrícula, turma ou indicador..." oninput="filterTable()">
+        </div>
+        <div id="topbarCurrentModule" style="font-size: 12px; font-weight: 700; color: var(--primary-dark); background: var(--primary-light); padding: 5px 12px; border-radius: var(--radius-sm); border: 1px solid var(--primary-border);">
+          Alerta Precoce (MTSS)
+        </div>
       </div>
 
-      <div class="topbar-actions">
-        <select class="btn-sm" style="background: var(--white); font-weight: 600;">
+      <div class="topbar-actions" style="display: flex; align-items: center; gap: 10px;">
+        <select class="btn-sm" style="background: var(--white); font-weight: 600;" onchange="showToast(`Período letivo alterado para: ${this.value}`, 'info')">
           <option>2º Bimestre Letivo (Em Aberto)</option>
           <option>1º Bimestre Letivo (Encerrado)</option>
         </select>
         <button class="btn-sm btn-outline" onclick="openModal('modalRelatorio')">📄 Síntese Formativa (LGPD)</button>
-        <button class="btn-action" onclick="openInterventionFor('Novo Estudante', '9º Ano B')">+ Nova Intervenção</button>
+        <button class="btn-action" onclick="openInterventionFor('Lucas Mendes Silva', '9º Ano B')">+ Nova Intervenção</button>
       </div>
     </header>
 
@@ -130,11 +135,11 @@
           <div style="display: flex; gap: 8px;">
             <select class="btn-sm" onchange="filterByClassDropdown(this)">
               <option value="all">Todas as Turmas</option>
-              <option value="9º Ano B">9º Ano B</option>
+              <option value="9º Ano B" selected>9º Ano B</option>
               <option value="9º Ano A">9º Ano A</option>
               <option value="1º Informática">1º Informática</option>
             </select>
-            <button class="btn-sm mtss-filter-btn btn-primary" onclick="filterByLevel('all', this)">Todos (482)</button>
+            <button class="btn-sm mtss-filter-btn active btn-primary" onclick="filterByLevel('all', this)">Todos (482)</button>
             <button class="btn-sm mtss-filter-btn" onclick="filterByLevel('tier3', this)">Nível 3 (13)</button>
             <button class="btn-sm mtss-filter-btn" onclick="filterByLevel('tier2', this)">Nível 2 (31)</button>
             <button class="btn-sm mtss-filter-btn" onclick="filterByLevel('tier1', this)">Nível 1 (438)</button>
@@ -155,7 +160,69 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Linha 1: Gabriel Costa (Nível 3) -->
+              <!-- Linha 1: Lucas Mendes (Aluno Foco - Nível 2 / SLA 48h) -->
+              <tr class="highlight-student-row" data-tier="tier2" data-turma="9º Ano B">
+                <td>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <span style="font-weight: 700; color: var(--gray-900);">Lucas Mendes Silva</span>
+                    <span class="badge badge-green" style="font-size: 10px;">Estudante Foco</span>
+                  </div>
+                  <div style="font-size: 11px; color: var(--gray-500);">2024.1.09B.01 • #CONT-2026-89</div>
+                </td>
+                <td><span class="badge badge-neutral">9º Ano B</span></td>
+                <td>
+                  <span style="color: #D97706; font-weight: 700;">-12%</span>
+                  <div style="font-size: 11px; color: var(--gray-500);">Sonolência matinal (Acolhida)</div>
+                </td>
+                <td>
+                  <span style="color: var(--primary); font-weight: 700;">96%</span>
+                </td>
+                <td>
+                  <span style="color: var(--primary); font-weight: 700;">94%</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-neutral">Em Mediação (SLA)</span>
+                </td>
+                <td>
+                  <div style="display: flex; gap: 6px;">
+                    <button class="btn-sm primary" onclick="openStudentProntuario('Lucas Mendes Silva')">Prontuário</button>
+                    <button class="btn-sm" onclick="switchView('d04')">Ver Mediação (SLA)</button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Linha 2: Beatriz Santos (Aluna Foco - Nível 2 / Autogestão) -->
+              <tr class="highlight-student-row" data-tier="tier2" data-turma="9º Ano B">
+                <td>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <span style="font-weight: 700; color: var(--gray-900);">Beatriz Santos Oliveira</span>
+                    <span class="badge badge-neutral" style="font-size: 10px;">Estudante Foco</span>
+                  </div>
+                  <div style="font-size: 11px; color: var(--gray-500);">2024.1.09B.02 • NAPNE Monitor</div>
+                </td>
+                <td><span class="badge badge-neutral">9º Ano B</span></td>
+                <td>
+                  <span style="color: #D97706; font-weight: 700;">-15%</span>
+                  <div style="font-size: 11px; color: var(--gray-500);">Autogestão de materiais e prazos</div>
+                </td>
+                <td>
+                  <span style="color: var(--gray-700); font-weight: 700;">91%</span>
+                </td>
+                <td>
+                  <span style="color: #D97706; font-weight: 700;">88%</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-neutral">Nível 2 (Apoio Focal)</span>
+                </td>
+                <td>
+                  <div style="display: flex; gap: 6px;">
+                    <button class="btn-sm primary" onclick="openStudentProntuario('Beatriz Santos Oliveira')">Prontuário</button>
+                    <button class="btn-sm" onclick="openInterventionFor('Beatriz Santos Oliveira', '9º Ano B')">+ Intervenção</button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Linha 3: Gabriel Costa (Nível 3) -->
               <tr data-tier="tier3" data-turma="9º Ano B">
                 <td>
                   <div style="font-weight: 700; color: var(--gray-900);">Gabriel Costa Souza</div>
@@ -180,62 +247,6 @@
                   <div style="display: flex; gap: 6px;">
                     <button class="btn-sm primary" onclick="openStudentProntuario('Gabriel Costa Souza')">Prontuário</button>
                     <button class="btn-sm" onclick="openInterventionFor('Gabriel Costa Souza', '9º Ano B')">+ Intervenção</button>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- Linha 2: Lucas Mendes (Nível 2 com Contestação Acolhida) -->
-              <tr data-tier="tier2" data-turma="9º Ano B">
-                <td>
-                  <div style="font-weight: 700; color: var(--gray-900);">Lucas Mendes Silva</div>
-                  <div style="font-size: 11px; color: var(--gray-500);">2024.1.09B.01</div>
-                </td>
-                <td><span class="badge badge-neutral">9º Ano B</span></td>
-                <td>
-                  <span style="color: #D97706; font-weight: 700;">-12%</span>
-                  <div style="font-size: 11px; color: var(--gray-500);">Sonolência matinal (Acolhida)</div>
-                </td>
-                <td>
-                  <span style="color: var(--primary); font-weight: 700;">96%</span>
-                </td>
-                <td>
-                  <span style="color: var(--primary); font-weight: 700;">94%</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-neutral">Em Mediação (SLA)</span>
-                </td>
-                <td>
-                  <div style="display: flex; gap: 6px;">
-                    <button class="btn-sm primary" onclick="openStudentProntuario('Lucas Mendes Silva')">Prontuário</button>
-                    <button class="btn-sm" onclick="switchView('d04')">Ver Mediação</button>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- Linha 3: Beatriz Santos (Nível 2) -->
-              <tr data-tier="tier2" data-turma="9º Ano B">
-                <td>
-                  <div style="font-weight: 700; color: var(--gray-900);">Beatriz Santos Oliveira</div>
-                  <div style="font-size: 11px; color: var(--gray-500);">2024.1.09B.02</div>
-                </td>
-                <td><span class="badge badge-neutral">9º Ano B</span></td>
-                <td>
-                  <span style="color: #D97706; font-weight: 700;">-15%</span>
-                  <div style="font-size: 11px; color: var(--gray-500);">Autogestão de materiais</div>
-                </td>
-                <td>
-                  <span style="color: var(--gray-700); font-weight: 700;">91%</span>
-                </td>
-                <td>
-                  <span style="color: #D97706; font-weight: 700;">88%</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-neutral">Nível 2 (Apoio)</span>
-                </td>
-                <td>
-                  <div style="display: flex; gap: 6px;">
-                    <button class="btn-sm primary" onclick="openStudentProntuario('Beatriz Santos Oliveira')">Prontuário</button>
-                    <button class="btn-sm" onclick="openInterventionFor('Beatriz Santos Oliveira', '9º Ano B')">+ Intervenção</button>
                   </div>
                 </td>
               </tr>
@@ -305,35 +316,35 @@
             <tbody>
               <tr>
                 <td style="font-weight: 700;">6º Ano A (Fund. II)</td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('6º Ano A', 'Cooperação', 8.9, 'bom')">8.9</div></td>
-                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell('6º Ano A', 'Autogestão', 7.1, 'atencao')">7.1</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('6º Ano A', 'Engajamento', 8.5, 'bom')">8.5</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('6º Ano A', 'Resiliência', 8.2, 'bom')">8.2</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('6º Ano A', 'Acolhimento', 9.0, 'bom')">9.0</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '6º Ano A', 'Cooperação', 8.9, 'bom')">8.9</div></td>
+                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell(this, '6º Ano A', 'Autogestão', 7.1, 'atencao')">7.1</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '6º Ano A', 'Engajamento', 8.5, 'bom')">8.5</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '6º Ano A', 'Resiliência', 8.2, 'bom')">8.2</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '6º Ano A', 'Acolhimento', 9.0, 'bom')">9.0</div></td>
               </tr>
               <tr>
                 <td style="font-weight: 700;">9º Ano B (Fund. II)</td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('9º Ano B', 'Cooperação', 8.8, 'bom')">8.8</div></td>
-                <td><div class="heatmap-cell cell-alert" onclick="selectHeatmapCell('9º Ano B', 'Autogestão', 6.2, 'alerta')">6.2</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('9º Ano B', 'Engajamento', 8.4, 'bom')">8.4</div></td>
-                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell('9º Ano B', 'Resiliência', 7.4, 'atencao')">7.4</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('9º Ano B', 'Acolhimento', 8.6, 'bom')">8.6</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '9º Ano B', 'Cooperação', 8.8, 'bom')">8.8</div></td>
+                <td><div class="heatmap-cell cell-alert selected" onclick="selectHeatmapCell(this, '9º Ano B', 'Autogestão', 6.2, 'alerta')">6.2</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '9º Ano B', 'Engajamento', 8.4, 'bom')">8.4</div></td>
+                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell(this, '9º Ano B', 'Resiliência', 7.4, 'atencao')">7.4</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '9º Ano B', 'Acolhimento', 8.6, 'bom')">8.6</div></td>
               </tr>
               <tr>
                 <td style="font-weight: 700;">1º Info Integrado (EM)</td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('1º Info Integrado', 'Cooperação', 8.5, 'bom')">8.5</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('1º Info Integrado', 'Autogestão', 8.3, 'bom')">8.3</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('1º Info Integrado', 'Engajamento', 9.1, 'bom')">9.1</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('1º Info Integrado', 'Resiliência', 8.7, 'bom')">8.7</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('1º Info Integrado', 'Acolhimento', 8.9, 'bom')">8.9</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '1º Info Integrado', 'Cooperação', 8.5, 'bom')">8.5</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '1º Info Integrado', 'Autogestão', 8.3, 'bom')">8.3</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '1º Info Integrado', 'Engajamento', 9.1, 'bom')">9.1</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '1º Info Integrado', 'Resiliência', 8.7, 'bom')">8.7</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '1º Info Integrado', 'Acolhimento', 8.9, 'bom')">8.9</div></td>
               </tr>
               <tr>
                 <td style="font-weight: 700;">2º Agropecuária (EM)</td>
-                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell('2º Agropecuária', 'Cooperação', 7.3, 'atencao')">7.3</div></td>
-                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell('2º Agropecuária', 'Autogestão', 7.0, 'atencao')">7.0</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('2º Agropecuária', 'Engajamento', 8.0, 'bom')">8.0</div></td>
-                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell('2º Agropecuária', 'Resiliência', 8.1, 'bom')">8.1</div></td>
-                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell('2º Agropecuária', 'Acolhimento', 7.5, 'atencao')">7.5</div></td>
+                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell(this, '2º Agropecuária', 'Cooperação', 7.3, 'atencao')">7.3</div></td>
+                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell(this, '2º Agropecuária', 'Autogestão', 7.0, 'atencao')">7.0</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '2º Agropecuária', 'Engajamento', 8.0, 'bom')">8.0</div></td>
+                <td><div class="heatmap-cell cell-good" onclick="selectHeatmapCell(this, '2º Agropecuária', 'Resiliência', 8.1, 'bom')">8.1</div></td>
+                <td><div class="heatmap-cell cell-warning" onclick="selectHeatmapCell(this, '2º Agropecuária', 'Acolhimento', 7.5, 'atencao')">7.5</div></td>
               </tr>
             </tbody>
           </table>
@@ -344,7 +355,7 @@
       <div class="panel-card" style="border-left: 4px solid var(--primary);">
         <div class="panel-header">
           <div class="panel-title" id="heatmapSelectedTitle">9º Ano B • Autogestão & Prazos (Índice: 6.2/10)</div>
-          <button class="btn-sm primary" id="heatmapActionBtn" onclick="showActionToast('9º Ano B')">Criar Plano de Ação para 9º Ano B</button>
+          <button class="btn-sm primary" id="heatmapActionBtn" onclick="triggerActionPlan('9º Ano B', 'Autogestão')">Criar Plano de Ação para 9º Ano B</button>
         </div>
         <p style="font-size: 13px; color: var(--gray-700); line-height: 1.5;" id="heatmapSelectedDesc">
           Ponto Crítico Identificado: Mais de 35% dos estudantes relataram sobrecarga ou dificuldade de autorregulação. Intervenção focal requerida: Oficina do NAPNE de gestão de tempo e ajuste de calendário de entregas com os docentes.
@@ -354,13 +365,25 @@
 
     <!-- [D03]: Prontuário Holístico do Estudante -->
     <section id="d03" class="content-area">
-      <div class="page-title">
+      <div class="page-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
         <div>
           <h2>Prontuário Atitudinal e Socioemocional</h2>
           <p>Visão individualizada formativa (LGPD) com cruzamento de radar, frequência e timeline de evidências.</p>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <span style="font-size: 12px; font-weight: 600;">Selecione o Estudante:</span>
+
+        <!-- Seletor Rápido de Estudantes Foco (Lucas <-> Beatriz) -->
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <div class="student-quick-toggle">
+            <button id="btnToggleLucas" class="toggle-pill active" onclick="loadStudentData('Lucas Mendes Silva')">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--primary);"></span>
+              Lucas Mendes (9º B)
+            </button>
+            <button id="btnToggleBeatriz" class="toggle-pill" onclick="loadStudentData('Beatriz Santos Oliveira')">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#D97706;"></span>
+              Beatriz Santos (9º B)
+            </button>
+          </div>
+
           <select id="prontuarioStudentSelect" class="btn-sm" style="background: var(--white); font-weight: 700;" onchange="loadStudentData(this.value)">
             <option value="Lucas Mendes Silva">Lucas Mendes Silva (9º B)</option>
             <option value="Beatriz Santos Oliveira">Beatriz Santos Oliveira (9º B)</option>
@@ -373,7 +396,7 @@
       <!-- Cabeçalho do Estudante -->
       <div class="panel-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 16px;">
-          <div id="pStudentAvatar" class="avatar-box" style="width: 52px; height: 52px; font-size: 18px;">LM</div>
+          <div id="pStudentAvatar" class="avatar-box" style="width: 52px; height: 52px; font-size: 18px; background: #DCFCE7; color: #166534;">LM</div>
           <div>
             <h3 id="pStudentName" style="font-size: 16px; font-weight: 700;">Lucas Mendes Silva</h3>
             <p id="pStudentMat" style="font-size: 12px; color: var(--gray-500);">Matrícula: 2024.1.09B.01 • 9º Ano B</p>
@@ -398,37 +421,75 @@
 
       <!-- Layout em Duas Colunas: Radar vs Timeline -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-        <!-- Coluna Esquerda: Radar & Dimensões -->
+        <!-- Coluna Esquerda: Radar SVG & Dimensões -->
         <div class="panel-card">
-          <div class="panel-title" style="margin-bottom: 14px;">Equilíbrio Atitudinal Multidimensional</div>
-          <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="panel-title" style="margin-bottom: 12px;">Equilíbrio Atitudinal Multidimensional (Kindbegrip)</div>
+          
+          <!-- Radar Chart SVG Interativo -->
+          <div class="radar-chart-container" style="margin-bottom: 14px;">
+            <svg id="radarSvg" width="200" height="200" viewBox="0 0 200 200">
+              <!-- Níveis concêntricos de referência -->
+              <circle cx="100" cy="100" r="15" fill="none" stroke="#E5E7EB" stroke-width="1" />
+              <circle cx="100" cy="100" r="30" fill="none" stroke="#E5E7EB" stroke-width="1" />
+              <circle cx="100" cy="100" r="45" fill="none" stroke="#E5E7EB" stroke-width="1" />
+              <circle cx="100" cy="100" r="60" fill="none" stroke="#E5E7EB" stroke-width="1" />
+              <circle cx="100" cy="100" r="75" fill="none" stroke="#D1D5DB" stroke-width="1.5" stroke-dasharray="3,3" />
+              
+              <!-- Linhas axiais dos 5 eixos -->
+              <line x1="100" y1="100" x2="100" y2="25" stroke="#E5E7EB" stroke-width="1" />
+              <line x1="100" y1="100" x2="171.3" y2="76.8" stroke="#E5E7EB" stroke-width="1" />
+              <line x1="100" y1="100" x2="144.1" y2="160.7" stroke="#E5E7EB" stroke-width="1" />
+              <line x1="100" y1="100" x2="55.9" y2="160.7" stroke="#E5E7EB" stroke-width="1" />
+              <line x1="100" y1="100" x2="28.7" y2="76.8" stroke="#E5E7EB" stroke-width="1" />
+              
+              <!-- Polígono Atitudinal Dinâmico -->
+              <polygon id="radarPolygon" class="radar-polygon" points="100,31.0 160.2,80.5 139.7,154.6 62.1,152.2 35.2,79.0" />
+              
+              <!-- Pontos nos Vértices -->
+              <circle id="radarDot0" class="radar-point-dot" cx="100" cy="31.0" r="3.5" />
+              <circle id="radarDot1" class="radar-point-dot" cx="160.2" cy="80.5" r="3.5" />
+              <circle id="radarDot2" class="radar-point-dot" cx="139.7" cy="154.6" r="3.5" />
+              <circle id="radarDot3" class="radar-point-dot" cx="62.1" cy="152.2" r="3.5" />
+              <circle id="radarDot4" class="radar-point-dot" cx="35.2" cy="79.0" r="3.5" />
+            </svg>
+          </div>
+
+          <!-- Barras de Métricas -->
+          <div style="display: flex; flex-direction: column; gap: 12px;">
             <div>
               <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
-                <span>Cooperação e Empatia</span>
+                <span>1. Cooperação e Empatia</span>
                 <strong id="valCoop">9.2</strong>
               </div>
               <div class="d-bar-track"><div id="barCoop" class="d-bar-fill" style="width: 92%;"></div></div>
             </div>
             <div>
               <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
-                <span>Autogestão e Pontualidade</span>
+                <span>2. Autogestão e Pontualidade</span>
                 <strong id="valAuto">8.4</strong>
               </div>
               <div class="d-bar-track"><div id="barAuto" class="d-bar-fill" style="width: 84%;"></div></div>
             </div>
             <div>
               <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
-                <span>Engajamento nas Aulas</span>
+                <span>3. Engajamento nas Aulas</span>
                 <strong id="valEng">9.0</strong>
               </div>
               <div class="d-bar-track"><div id="barEng" class="d-bar-fill" style="width: 90%;"></div></div>
             </div>
             <div>
               <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
-                <span>Resiliência & Resolução de Problemas</span>
+                <span>4. Resiliência & Resolução de Problemas</span>
                 <strong id="valRes">8.6</strong>
               </div>
               <div class="d-bar-track"><div id="barRes" class="d-bar-fill" style="width: 86%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>5. Acolhimento Mútuo</span>
+                <strong id="valAcolh">9.1</strong>
+              </div>
+              <div class="d-bar-track"><div id="barAcolh" class="d-bar-fill" style="width: 91%;"></div></div>
             </div>
           </div>
         </div>
@@ -437,18 +498,10 @@
         <div class="panel-card">
           <div class="panel-header" style="margin-bottom: 10px;">
             <div class="panel-title">Linha do Tempo de Observações Docentes</div>
-            <button class="btn-sm" onclick="openInterventionFor('Lucas Mendes Silva', '9º Ano B')">+ Prescrever Ação</button>
+            <button id="btnTimelinePrescrever" class="btn-sm" onclick="openInterventionFor('Lucas Mendes Silva', '9º Ano B')">+ Prescrever Ação</button>
           </div>
-          <div id="pStudentTimeline" style="max-height: 250px; overflow-y: auto;">
+          <div id="pStudentTimeline" style="max-height: 380px; overflow-y: auto;">
             <!-- Preenchido dinamicamente via JS -->
-            <div style="background:var(--gray-50); border:1px solid var(--gray-200); border-radius:6px; padding:10px 12px; margin-bottom:8px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <span class="badge badge-green">Cooperação</span>
-                <span style="font-size:11px; color:var(--gray-500);">Hoje, 08:30</span>
-              </div>
-              <p style="font-size:12px; color:var(--gray-800); font-weight:600; margin-bottom:2px;">Apoio ativo aos colegas no trabalho de campo de Geografia física.</p>
-              <span style="font-size:11px; color:var(--gray-500);">Profª. Luciana Rocha (Geografia)</span>
-            </div>
           </div>
         </div>
       </div>
@@ -468,9 +521,12 @@
           <div>
             <span class="badge badge-alert">Protocolo #CONT-2026-89</span>
             <h3 style="font-size: 15px; font-weight: 700; margin-top: 4px;">Contestação / Justificativa Médica: Lucas Mendes Silva</h3>
-            <p style="font-size: 11px; color: var(--gray-500);">Recebido em: 25/10/2026 às 14:10 • SLA Restante: 31 horas</p>
+            <p style="font-size: 11px; color: var(--gray-500);">Recebido em: 25/10/2026 às 14:10 • SLA Restante: 31 horas úteis</p>
           </div>
-          <button class="btn-sm primary" onclick="openModal('modalResolucao')">Emitir Parecer e Homologar</button>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-sm" onclick="openStudentProntuario('Lucas Mendes Silva')">Ver Prontuário</button>
+            <button class="btn-sm primary" onclick="openModal('modalResolucao')">Emitir Parecer e Homologar</button>
+          </div>
         </div>
 
         <!-- Comparador Lado a Lado -->
@@ -499,18 +555,18 @@
   <div id="modalIntervencao" class="modal-backdrop">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title">Prescrever Intervenção Pedagógica MTSS</h3>
+        <h3 class="modal-title" style="font-size: 15px; font-weight: 700;">Prescrever Intervenção Pedagógica MTSS</h3>
         <button class="modal-close" onclick="closeModal('modalIntervencao')">×</button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
         <div>
           <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Estudante Alvo:</label>
-          <input type="text" id="intervStudentInput" value="Gabriel Costa Souza (9º Ano B)" style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px;">
+          <input type="text" id="intervStudentInput" value="Lucas Mendes Silva (9º Ano B)" style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px;">
         </div>
 
         <div>
           <label style="display:block; font-size:12px; font-weight:600; margin-bottom:4px;">Tipo de Intervenção Pedagógica:</label>
-          <select style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px; background:var(--white);">
+          <select id="intervTypeSelect" style="width:100%; padding:8px 12px; border:1px solid var(--gray-300); border-radius:6px; font-size:13px; background:var(--white);">
             <option>Tutoria Formativa entre Pares (Estudante Mentor)</option>
             <option>Acolhimento com Orientação Educacional / NAPNE</option>
             <option>Adaptação Curricular & Flexibilização de Prazos</option>
@@ -534,10 +590,10 @@
   <div id="modalResolucao" class="modal-backdrop">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title">Homologar Parecer Devolutivo (Protocolo #CONT-2026-89)</h3>
+        <h3 class="modal-title" style="font-size: 15px; font-weight: 700;">Homologar Parecer Devolutivo (Protocolo #CONT-2026-89)</h3>
         <button class="modal-close" onclick="closeModal('modalResolucao')">×</button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
             <input type="radio" name="res_choice" checked>
@@ -565,7 +621,7 @@
   <div id="modalRelatorio" class="modal-backdrop">
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
-        <h3 class="modal-title">Síntese Formativa Institucional (Conselho de Classe)</h3>
+        <h3 class="modal-title" style="font-size: 15px; font-weight: 700;">Síntese Formativa Institucional (Conselho de Classe)</h3>
         <button class="modal-close" onclick="closeModal('modalRelatorio')">×</button>
       </div>
       <div class="modal-body" style="font-size: 13px; line-height: 1.5;">
