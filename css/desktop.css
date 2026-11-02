@@ -561,7 +561,7 @@ tr.highlight-student-row:hover td {
 }
 
 .toast-item.toast-info {
-  border-left-color: #2563EB;
+  border-left-color: var(--primary);
 }
 
 .toast-item.toast-warning {

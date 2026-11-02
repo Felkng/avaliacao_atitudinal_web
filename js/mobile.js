@@ -42,8 +42,8 @@ const StudentsData = {
     matricula: '2024.1.09B.02',
     turma: '9º Ano B',
     initials: 'BS',
-    avatarBg: '#EFF6FF',
-    avatarColor: '#1D4ED8',
+    avatarBg: '#F3F4F6',
+    avatarColor: '#1F2937',
     generalScore: '9.1 Geral',
     generalScoreNum: '9.1',
     scores: {
@@ -355,7 +355,7 @@ function renderEvidenceChips(dimKey) {
     const isSelected = index === 0;
     return `
       <div class="ev-chip ${isSelected ? 'selected' : ''}" onclick="toggleEvidenceChip(this)">
-        ${isSelected ? '✓ ' : ''}${chipText}
+        ${chipText}
       </div>
     `;
   }).join('');
@@ -371,14 +371,12 @@ function selectNature(card, type) {
 
 function toggleEvidenceChip(chip) {
   chip.classList.toggle('selected');
-  let text = chip.textContent.replace('✓', '').trim();
+  let text = chip.textContent.trim();
 
   if (chip.classList.contains('selected')) {
     MobileState.selectedChips.add(text);
-    chip.innerHTML = `✓ ${text}`;
   } else {
     MobileState.selectedChips.delete(text);
-    chip.innerHTML = text;
   }
 }
 

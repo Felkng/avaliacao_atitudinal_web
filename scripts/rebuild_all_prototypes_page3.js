@@ -285,7 +285,7 @@ const BUILDER_CODE = `
 
   // Submit button
   const subM05B = addRect(m05, 16, 324, 358, 44, C.primary, null, 8);
-  const subM05T = addText(m05, 110, 338, "✓ Enviar Minha Autoavaliação", 13, true, C.white);
+  const subM05T = addText(m05, 110, 338, "Enviar Minha Autoavaliação", 13, true, C.white);
   makeInteractive([subM05B, subM05T], m04);
 
   makeInteractive([ctaM05B, ctaM05T1, ctaM05T2], m05);
@@ -316,10 +316,10 @@ const BUILDER_CODE = `
   addText(m06, 36, 240, "Lucas iniciou tratamento com anti-histamínico forte, o que gerou sonolência no primeiro horário. O atestado médico do Dr. Roberto foi anexado.", 11, false, C.gray700, 318);
 
   addRect(m06, 28, 316, 334, 40, C.primaryLight, C.primaryBorder, 6);
-  addText(m06, 40, 328, "📎 Anexo: atestado_medico_outubro.pdf (1.2 MB) ✓", 11, true, C.primaryDark);
+  addText(m06, 40, 328, "Anexo: atestado_medico_outubro.pdf (1.2 MB)", 11, true, C.primaryDark);
 
   const subM06B = addRect(m06, 16, 386, 358, 44, C.primary, null, 8);
-  const subM06T = addText(m06, 100, 400, "✓ Enviar Pedido de Diálogo", 13, true, C.white);
+  const subM06T = addText(m06, 100, 400, "Enviar Pedido de Diálogo", 13, true, C.white);
 
   if (m06) makeInteractive([c3B, c3T1, c3T2], m06);
 
@@ -517,10 +517,10 @@ const BUILDER_CODE = `
 
   // Student Switcher Pills
   const pLucas = addRect(d03, 290, 96, 200, 36, C.primaryLight, C.primary, 18);
-  addText(d03, 314, 106, "👤 Lucas Mendes (9º B)", 12, true, C.primaryDark);
+  addText(d03, 314, 106, "Lucas Mendes (9º B)", 12, true, C.primaryDark);
 
   const pBeatriz = addRect(d03, 502, 96, 200, 36, C.white, C.gray300, 18);
-  addText(d03, 526, 106, "👤 Beatriz Santos (9º B)", 12, true, C.gray700);
+  addText(d03, 526, 106, "Beatriz Santos (9º B)", 12, true, C.gray700);
 
   // Student Header Card
   addRect(d03, 290, 148, 1100, 90, C.white, C.gray200, 12);
@@ -567,9 +567,9 @@ const BUILDER_CODE = `
   addText(d04, 336, 192, "1. Registro do Docente em Sala", 12, true, C.gray600);
   addText(d04, 336, 216, "Profª. Camila Diniz: 'Estudante apresentou postura apática e desengajada durante a explicação matinal.'", 11, false, C.gray700, 460);
 
-  addRect(d04, 850, 178, 514, 140, "#EFF6FF", "#BFDBFE", 8);
-  addText(d04, 866, 192, "2. Justificativa da Família & Aluno", 12, true, "#1D4ED8");
-  addText(d04, 866, 216, "Srª. Mariana Mendes: 'Lucas iniciou tratamento com anti-histamínico na véspera. O atestado médico do Dr. Roberto foi anexado.'", 11, false, "#1E3A8A", 480);
+  addRect(d04, 850, 178, 514, 140, C.gray50, C.gray200, 8);
+  addText(d04, 866, 192, "2. Justificativa da Família & Aluno", 12, true, C.gray700);
+  addText(d04, 866, 216, "Srª. Mariana Mendes: 'Lucas iniciou tratamento com anti-histamínico na véspera. O atestado médico do Dr. Roberto foi anexado.'", 11, false, C.gray700, 480);
 
   // Official Feedback Box
   addRect(d04, 320, 338, 1044, 130, C.primaryLight, C.primaryBorder, 8);

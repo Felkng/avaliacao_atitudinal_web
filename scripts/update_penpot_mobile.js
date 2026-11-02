@@ -144,10 +144,10 @@ async function main() {
         addRect(board, 0, navY, 390, 74, "#FFFFFF", 0, "#E5E7EB");
 
         const tabs = [
-          { name: "Turmas", icon: "⊞", x: 40 },
-          { name: "Registro", icon: "✍", x: 135 },
-          { name: "Radar", icon: "◎", x: 235 },
-          { name: "Aluno", icon: "👤", x: 325 }
+          { name: "Turmas", icon: "T", x: 40 },
+          { name: "Registro", icon: "+", x: 135 },
+          { name: "Radar", icon: "R", x: 235 },
+          { name: "Aluno", icon: "A", x: 325 }
         ];
 
         const tabShapes = [];
@@ -200,7 +200,7 @@ async function main() {
 
       // Busca e Filtros
       addRect(m01, 16, 192, 358, 40, "#FFFFFF", 8, "#D1D5DB");
-      addText(m01, 32, 204, "🔍 Buscar estudante por nome...", 12, "400", "#9CA3AF");
+      addText(m01, 32, 204, "Buscar estudante por nome...", 12, "400", "#9CA3AF");
 
       addBadge(m01, 16, 242, 70, 24, "Todos (2)", "#2F9E41", "#FFFFFF");
       addBadge(m01, 92, 242, 96, 24, "Cooperação (1)", "#FFFFFF", "#374151");
@@ -224,14 +224,14 @@ async function main() {
       addText(m01, 224, 380, "RADAR", 10, "700", "#374151");
 
       // Aluno 2: Beatriz Santos Oliveira
-      const cardBeatriz = addRect(m01, 16, 416, 358, 96, "#FFFFFF", 12, "#2563EB");
-      addRect(m01, 16, 416, 6, 96, "#2563EB", 4);
-      addRect(m01, 32, 432, 44, 44, "#EFF6FF", 22);
-      addText(m01, 45, 444, "BS", 14, "700", "#1D4ED8");
+      const cardBeatriz = addRect(m01, 16, 416, 358, 96, "#FFFFFF", 12, "#2F9E41");
+      addRect(m01, 16, 416, 6, 96, "#2F9E41", 4);
+      addRect(m01, 32, 432, 44, 44, "#F3F4F6", 22);
+      addText(m01, 45, 444, "BS", 14, "700", "#111827");
       addText(m01, 88, 432, "Beatriz Santos Oliveira", 14, "700", "#111827");
       addText(m01, 88, 452, "Matrícula: 2024.1.09B.02 • 9º Ano B", 11, "400", "#6B7280");
-      addText(m01, 88, 470, "Última: Autogestão e Prazos • Ontem 14:15", 11, "600", "#1D4ED8");
-      addBadge(m01, 294, 430, 66, 20, "Destaque", "#EFF6FF", "#1D4ED8");
+      addText(m01, 88, 470, "Última: Autogestão e Prazos • Ontem 14:15", 11, "600", "#111827");
+      addBadge(m01, 294, 430, 66, 20, "Destaque", "#F3F4F6", "#111827");
 
       const btnRegBeatriz = addRect(m01, 88, 488, 110, 20, "#2F9E41", 6);
       addText(m01, 104, 492, "+ REGISTRAR", 10, "700", "#FFFFFF");
@@ -307,7 +307,7 @@ async function main() {
 
       // Formativa (Ativa)
       addRect(m02A, 16, 410, 114, 54, "#F0FDF4", 10, "#2F9E41");
-      addText(m02A, 30, 420, "✓ Formativa", 12, "700", "#2F9E41");
+      addText(m02A, 30, 420, "Formativa", 12, "700", "#2F9E41");
       addText(m02A, 24, 438, "Comportamento positivo", 9, "400", "#166534");
 
       // Ponto de Atenção (clicável -> navega para M02-B)
@@ -324,10 +324,10 @@ async function main() {
       addText(m02A, 16, 480, "TOQUE 3: EVIDÊNCIA OBSERVÁVEL (CHIPS MÚLTIPLOS)", 11, "700", "#6B7280");
 
       addRect(m02A, 16, 500, 170, 32, "#2F9E41", 8);
-      addText(m02A, 26, 508, "✓ Apoio ativo aos colegas", 11, "700", "#FFFFFF");
+      addText(m02A, 26, 508, "Apoio ativo aos colegas", 11, "700", "#FFFFFF");
 
       addRect(m02A, 194, 500, 150, 32, "#2F9E41", 8);
-      addText(m02A, 204, 508, "✓ Escuta acolhedora", 11, "700", "#FFFFFF");
+      addText(m02A, 204, 508, "Escuta acolhedora", 11, "700", "#FFFFFF");
 
       addRect(m02A, 16, 540, 150, 32, "#FFFFFF", 8, "#D1D5DB");
       addText(m02A, 26, 548, "Mediação de conflitos", 11, "600", "#374151");
@@ -339,7 +339,7 @@ async function main() {
       addText(m02A, 26, 588, "Liderança compartilhada", 11, "600", "#374151");
 
       const btnSalvarA = addRect(m02A, 16, 636, 358, 48, "#2F9E41", 10);
-      addText(m02A, 90, 650, "✓ SALVAR REGISTRO IMEDIATO", 13, "700", "#FFFFFF");
+      addText(m02A, 90, 650, "SALVAR REGISTRO IMEDIATO", 13, "700", "#FFFFFF");
       addText(m02A, 70, 696, "+ Anotação confidencial / foto caderno", 11, "600", "#6B7280");
 
       const navM02ATabs = buildBottomNav(m02A, 1);
@@ -367,13 +367,13 @@ async function main() {
       addText(m02B, 24, 52, "←", 14, "700", "#374151");
       addText(m02B, 56, 46, "Registro Rápido (3 Toques)", 14, "700", "#111827");
       addText(m02B, 56, 66, "Estado: Ponto de Atenção Selecionado", 11, "400", "#6B7280");
-      addBadge(m02B, 300, 50, 74, 22, "9º Ano B", "#EFF6FF", "#1D4ED8");
+      addBadge(m02B, 300, 50, 74, 22, "9º Ano B", "#F3F4F6", "#111827");
 
       // Estudante Ativo Beatriz
       addRect(m02B, 16, 102, 358, 54, "#FFFFFF", 10, "#E5E7EB");
-      addRect(m02B, 16, 102, 5, 54, "#2563EB", 3);
-      addRect(m02B, 28, 110, 38, 38, "#EFF6FF", 19);
-      addText(m02B, 38, 120, "BS", 13, "700", "#1D4ED8");
+      addRect(m02B, 16, 102, 5, 54, "#2F9E41", 3);
+      addRect(m02B, 28, 110, 38, 38, "#F3F4F6", 19);
+      addText(m02B, 38, 120, "BS", 13, "700", "#111827");
       addText(m02B, 76, 112, "Beatriz Santos Oliveira", 13, "700", "#111827");
       addText(m02B, 76, 130, "Matrícula: 2024.1.09B.02 • 9º Ano B", 10, "400", "#6B7280");
 
@@ -428,10 +428,10 @@ async function main() {
       addText(m02B, 16, 480, "TOQUE 3: EVIDÊNCIA OBSERVÁVEL (CHIPS MÚLTIPLOS)", 11, "700", "#6B7280");
 
       addRect(m02B, 16, 500, 190, 32, "#2F9E41", 8);
-      addText(m02B, 26, 508, "✓ Pontualidade nas entregas", 11, "700", "#FFFFFF");
+      addText(m02B, 26, 508, "Pontualidade nas entregas", 11, "700", "#FFFFFF");
 
       addRect(m02B, 214, 500, 160, 32, "#2F9E41", 8);
-      addText(m02B, 224, 508, "✓ Organização de material", 11, "700", "#FFFFFF");
+      addText(m02B, 224, 508, "Organização de material", 11, "700", "#FFFFFF");
 
       addRect(m02B, 16, 540, 170, 32, "#FFFFFF", 8, "#D1D5DB");
       addText(m02B, 26, 548, "Cumprimento de combinados", 11, "600", "#374151");
@@ -443,7 +443,7 @@ async function main() {
       addText(m02B, 26, 588, "Planejamento de rotina", 11, "600", "#374151");
 
       const btnSalvarB = addRect(m02B, 16, 636, 358, 48, "#2F9E41", 10);
-      addText(m02B, 90, 650, "✓ SALVAR REGISTRO IMEDIATO", 13, "700", "#FFFFFF");
+      addText(m02B, 90, 650, "SALVAR REGISTRO IMEDIATO", 13, "700", "#FFFFFF");
       addText(m02B, 70, 696, "+ Anotação confidencial / foto caderno", 11, "600", "#6B7280");
 
       const navM02BTabs = buildBottomNav(m02B, 1);
@@ -529,7 +529,7 @@ async function main() {
       addText(m03, 28, 554, "Registrado por: Prof. Marcos Prado (História)", 10, "400", "#6B7280");
 
       addRect(m03, 16, 588, 358, 80, "#FFFFFF", 10, "#E5E7EB");
-      addBadge(m03, 28, 598, 80, 20, "Engajamento", "#EFF6FF", "#1D4ED8");
+      addBadge(m03, 28, 598, 80, 20, "Engajamento", "#F3F4F6", "#111827");
       addText(m03, 270, 600, "20/10/2026", 11, "400", "#9CA3AF");
       addText(m03, 28, 624, "Participação espontânea e assertiva nos debates matinais.", 12, "600", "#111827");
       addText(m03, 28, 644, "Registrado por: Prof. Carlos Mendes (Matemática)", 10, "400", "#6B7280");

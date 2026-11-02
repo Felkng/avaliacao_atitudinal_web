@@ -248,9 +248,9 @@
           </div>
 
           <!-- Aluno 2: Beatriz Santos -->
-          <div class="card card-clickable student-row-card" data-name="Beatriz Santos Oliveira" data-dim="autogestao" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; border-left: 3px solid #2563EB;" onclick="startQuickRecord('Beatriz Santos Oliveira')">
+          <div class="card card-clickable student-row-card" data-name="Beatriz Santos Oliveira" data-dim="autogestao" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; border-left: 3px solid var(--primary);" onclick="startQuickRecord('Beatriz Santos Oliveira')">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <div class="avatar-box" style="background: #EFF6FF; color: #1D4ED8; font-weight: 700;">BS</div>
+              <div class="avatar-box" style="background: var(--gray-100); color: var(--gray-800); font-weight: 700;">BS</div>
               <div>
                 <h4 style="font-size: 13px; font-weight: 700; color: var(--gray-900);">Beatriz Santos Oliveira</h4>
                 <p style="font-size: 11px; color: var(--gray-500);">Última: Autogestão • Ontem 14:15</p>
@@ -362,7 +362,7 @@
         </div>
         <div id="evidenceChipsContainer" class="evidence-chips" style="margin-bottom: 16px;">
           <!-- Populados dinamicamente via JS de acordo com a dimensão selecionada -->
-          <div class="ev-chip selected" onclick="toggleEvidenceChip(this)">✓ Apoio ativo aos colegas</div>
+          <div class="ev-chip selected" onclick="toggleEvidenceChip(this)">Apoio ativo aos colegas</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Escuta acolhedora</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Mediação de conflitos</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Postura receptiva</div>
@@ -370,7 +370,7 @@
         </div>
 
         <button class="btn btn-primary btn-block" style="padding: 12px; font-size: 13px; font-weight: 700;" onclick="submitQuickRecord()">
-          <span>✓ Salvar Registro Imediato</span>
+          <span>Salvar Registro Imediato</span>
         </button>
 
         <div style="text-align: center; margin-top: 10px;">
@@ -588,7 +588,7 @@
         </div>
 
         <button class="btn btn-primary btn-block" onclick="submitSelfAssessment()">
-          <span>✓ Enviar Minha Autoavaliação</span>
+          <span>Enviar Minha Autoavaliação</span>
         </button>
       </div>
     </div>
@@ -688,7 +688,7 @@
         </div>
 
         <button class="btn btn-primary btn-block" onclick="submitFamilyContestation()">
-          <span>✓ Enviar Pedido de Diálogo</span>
+          <span>Enviar Pedido de Diálogo</span>
         </button>
       </div>
     </div>
@@ -764,8 +764,12 @@
         <p style="font-size: 12px; color: var(--gray-600);">Adicione notas pedagógicas que auxiliem o núcleo multidisciplinar:</p>
         <textarea style="width: 100%; height: 75px; border: 1px solid var(--gray-300); border-radius: 6px; padding: 8px; font-size: 12px; resize: none;" placeholder="Ex: Demonstrou empatia espontânea auxiliando um colega com dificuldade motora no exercício..."></textarea>
         <div style="display: flex; gap: 8px;">
-          <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="showToast('Gravador de áudio pedagógico ativado (30s)'); closeMobileModal('modalExtraEvidence');">🎤 Gravar Áudio</button>
-          <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="showToast('Foto do caderno pedagógico anexada'); closeMobileModal('modalExtraEvidence');">📷 Foto Caderno</button>
+          <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="showToast('Gravador de áudio pedagógico ativado (30s)'); closeMobileModal('modalExtraEvidence');">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>Gravar Áudio
+          </button>
+          <button class="btn btn-sm btn-outline" style="flex: 1;" onclick="showToast('Foto do caderno pedagógico anexada'); closeMobileModal('modalExtraEvidence');">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>Foto Caderno
+          </button>
         </div>
       </div>
       <div class="modal-footer">

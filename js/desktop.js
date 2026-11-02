@@ -419,7 +419,7 @@ function resolveMediation() {
   // Atualiza status na Central de Mediação
   const medHeader = document.querySelector('#d04 .panel-card .panel-header h3');
   if (medHeader) {
-    medHeader.innerHTML = 'Contestação / Justificativa Médica: Lucas Mendes Silva <span class="badge badge-green" style="margin-left: 8px;">✓ Parecer Homologado</span>';
+    medHeader.innerHTML = 'Contestação / Justificativa Médica: Lucas Mendes Silva <span class="badge badge-green" style="margin-left: 8px;">Parecer Homologado</span>';
   }
 
   showToast('Parecer devolutivo homologado com sucesso! Família notificada via app e registro retificado.', 'success');
@@ -445,8 +445,7 @@ function showToast(message, type = 'success') {
   const toast = document.createElement('div');
   toast.className = `toast-item toast-${type}`;
   
-  const icon = type === 'success' ? '✓' : (type === 'warning' ? '⚠' : 'ℹ');
-  toast.innerHTML = `<span style="font-weight:700;">${icon}</span><span>${message}</span>`;
+  toast.innerHTML = `<span style="font-weight:600;">${message}</span>`;
   
   container.appendChild(toast);
 

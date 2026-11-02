@@ -16,10 +16,8 @@
   
   --amber: #D97706;            /* Atenção preventiva */
   --amber-light: #FEF3C7;       /* Fundo suave para atenção */
-  --blue: #2563EB;             /* Mediação / Em desenvolvimento */
-  --blue-light: #EFF6FF;        /* Fundo suave para mediação */
 
-  /* Escala de Neutros e Superfícies */
+  /* Escala de Neutros e Superfícies (Seguindo rigorosamente IFNMG) */
   --gray-900: #111827;          /* Títulos e textos com ênfase máxima */
   --gray-800: #1F2937;          /* Textos primários */
   --gray-700: #374151;          /* Corpo de texto padrão */
