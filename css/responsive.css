@@ -17,36 +17,6 @@ html, body {
   color: var(--gray-900);
 }
 
-/* Barra Flutuante de Informação de Modo Responsivo */
-.responsive-mode-indicator {
-  position: fixed;
-  top: 10px;
-  right: 14px;
-  background: rgba(17, 24, 39, 0.85);
-  backdrop-filter: blur(8px);
-  color: var(--white);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  font-size: 11px;
-  font-weight: 600;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  pointer-events: none;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: opacity 0.3s ease;
-}
-
-.mode-badge {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
-}
-
 /* ==========================================================================
    REGRAS MOBILE (Telas <= 1023px)
    ========================================================================== */
@@ -84,10 +54,6 @@ html, body {
   .demo-controls {
     display: none !important; /* Em mobile real, o usuário navega pelo fluxo real da UI */
   }
-
-  .responsive-mode-indicator::after {
-    content: "Visão Mobile (Professor / Aluno / Família)";
-  }
 }
 
 /* ==========================================================================
@@ -105,9 +71,5 @@ html, body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-  }
-
-  .responsive-mode-indicator::after {
-    content: "Visão Desktop (Coordenação & MTSS)";
   }
 }
