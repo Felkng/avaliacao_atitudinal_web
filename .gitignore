@@ -1,0 +1,7 @@
+# Ignore agents configuration and credentials
+.agents/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.log
