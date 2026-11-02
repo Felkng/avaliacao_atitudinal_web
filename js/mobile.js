@@ -454,6 +454,13 @@ function closeMobileModal(modalId) {
 // Notificação Toast
 let toastTimeout;
 function showToast(message) {
+  // Se estiver em modo desktop (tela larga), delega para o sistema de toast da aplicação se disponível
+  const desktopContainer = document.getElementById('toastContainer');
+  if (window.innerWidth >= 1024 && desktopContainer && typeof showDesktopToast === 'function') {
+    showDesktopToast(message, 'info');
+    return;
+  }
+
   let toast = document.getElementById('mobileToast');
   if (!toast) {
     toast = document.createElement('div');

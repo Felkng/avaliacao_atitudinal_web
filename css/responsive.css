@@ -1,0 +1,113 @@
+/* ==========================================================================
+   RESPONSIVE UNIFIED SYSTEM - IFNMG AVALIAATITUDE
+   Media queries para comutação fluida entre interface Mobile e Desktop
+   ========================================================================== */
+
+/* Breakpoint padrão: 1024px */
+/* <= 1023px: VISÃO MOBILE NATIVA (Smartphones e Tablets Pequenos) */
+/* >= 1024px: VISÃO DESKTOP WIDESCREEN (Coordenação / MTSS / Cockpit) */
+
+/* Contêiner Geral */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--gray-50);
+  font-family: var(--font-family-base);
+  color: var(--gray-900);
+}
+
+/* Barra Flutuante de Informação de Modo Responsivo */
+.responsive-mode-indicator {
+  position: fixed;
+  top: 10px;
+  right: 14px;
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.mode-badge {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* ==========================================================================
+   REGRAS MOBILE (Telas <= 1023px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  /* Oculta completamente a casca e a interface Desktop */
+  #desktop-layout-root {
+    display: none !important;
+  }
+
+  /* Exibe a interface Mobile */
+  #mobile-layout-root {
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--gray-50);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Na visualização móvel real em tela pequena, o device-frame ocupa 100% sem bordas artificiais */
+  .device-frame {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding-bottom: 70px; /* Espaço para bottom-nav */
+  }
+
+  /* Barra de demonstração superior em mobile */
+  .demo-controls {
+    display: none !important; /* Em mobile real, o usuário navega pelo fluxo real da UI */
+  }
+
+  .responsive-mode-indicator::after {
+    content: "Visão Mobile (Professor / Aluno / Família)";
+  }
+}
+
+/* ==========================================================================
+   REGRAS DESKTOP (Telas >= 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  /* Oculta completamente a interface Mobile */
+  #mobile-layout-root {
+    display: none !important;
+  }
+
+  /* Exibe a interface Desktop Widescreen */
+  #desktop-layout-root {
+    display: flex !important;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .responsive-mode-indicator::after {
+    content: "Visão Desktop (Coordenação & MTSS)";
+  }
+}

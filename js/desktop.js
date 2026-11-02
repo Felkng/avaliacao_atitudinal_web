@@ -434,6 +434,10 @@ function printReportPreview() {
 
 // Sistema de Notificações Toast Flutuante
 function showToast(message, type = 'success') {
+  showDesktopToast(message, type);
+}
+
+function showDesktopToast(message, type = 'success') {
   let container = document.getElementById('toastContainer');
   if (!container) {
     container = document.createElement('div');
