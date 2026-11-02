@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IFNMG • AvaliaAtitude - Sistema Unificado e Responsivo de Avaliação Atitudinal</title>
   
-  <!-- CSS Modular e Reutilizável com Design System IFNMG -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -15,18 +14,13 @@
 </head>
 <body class="unified-app">
 
-  <!-- ========================================================================= -->
-  <!-- 1. CASCA E INTERFACE MOBILE (Exibida em telas <= 1023px)                   -->
-  <!-- ========================================================================= -->
   <div id="mobile-layout-root">
 <div class="device-frame">
-    <!-- Status Bar -->
     <div class="status-bar">
       <span>09:41</span>
       <span>5G • 100%</span>
     </div>
 
-    <!-- [M00]: Início / Seleção de Perfil -->
     <div id="m00" class="screen-content active">
       <div class="app-header">
         <div class="logo-group">
@@ -57,7 +51,6 @@
         </div>
 
         <div class="profile-grid">
-          <!-- Perfil Docente -->
           <div class="profile-card active" onclick="selectProfile('professor')">
             <div class="profile-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -71,7 +64,6 @@
             <span style="font-size: 16px; color: var(--gray-400);">→</span>
           </div>
 
-          <!-- Perfil Aluno -->
           <div class="profile-card" onclick="selectProfile('aluno')">
             <div class="profile-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -85,7 +77,6 @@
             <span style="font-size: 16px; color: var(--gray-400);">→</span>
           </div>
 
-          <!-- Perfil Responsável -->
           <div class="profile-card" onclick="selectProfile('responsavel')">
             <div class="profile-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -109,7 +100,6 @@
       </div>
     </div>
 
-    <!-- [M01]: Docente - Minhas Turmas -->
     <div id="m01" class="screen-content">
       <div class="app-header">
         <div class="logo-group">
@@ -145,7 +135,6 @@
 
         <div class="section-title">Turmas sob sua Regência</div>
 
-        <!-- Turma 1: 9º B -->
         <div class="card card-clickable" onclick="selectTurma('9º Ano B - Ensino Fundamental')">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
@@ -160,7 +149,6 @@
           </div>
         </div>
 
-        <!-- Turma 2: 9º A -->
         <div class="card card-clickable" onclick="selectTurma('9º Ano A - Ensino Fundamental')">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
@@ -175,7 +163,6 @@
           </div>
         </div>
 
-        <!-- Turma 3: 1º Info -->
         <div class="card card-clickable" onclick="selectTurma('1º Ano Técnico em Informática')">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
@@ -192,7 +179,6 @@
       </div>
     </div>
 
-    <!-- [M02]: Docente - Chamada Atitudinal & Lista de Alunos -->
     <div id="m02" class="screen-content">
       <div class="app-header">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -206,7 +192,6 @@
       </div>
 
       <div style="padding: 12px 16px;">
-        <!-- Busca Rápida -->
         <div class="mobile-search-box">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gray-400)">
             <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -214,7 +199,6 @@
           <input type="text" id="mobileSearchInput" placeholder="Buscar aluno por nome..." oninput="filterMobileStudents()">
         </div>
 
-        <!-- Filtros em Carrossel Horizontal -->
         <div class="chips-scroll">
           <div class="filter-chip active" onclick="filterByDimensionChip(this, 'all')">Todos (2)</div>
           <div class="filter-chip" onclick="filterByDimensionChip(this, 'cooperacao')">Cooperação (1)</div>
@@ -224,7 +208,6 @@
         </div>
 
         <div id="studentListContainer">
-          <!-- Aluno 1: Lucas Mendes -->
           <div class="card card-clickable student-row-card" data-name="Lucas Mendes Silva" data-dim="cooperacao" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; border-left: 3px solid var(--primary);" onclick="startQuickRecord('Lucas Mendes Silva')">
             <div style="display: flex; align-items: center; gap: 12px;">
               <div class="avatar-box" style="background: #DCFCE7; color: #166534; font-weight: 700;">LM</div>
@@ -239,7 +222,6 @@
             </div>
           </div>
 
-          <!-- Aluno 2: Beatriz Santos -->
           <div class="card card-clickable student-row-card" data-name="Beatriz Santos Oliveira" data-dim="autogestao" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; border-left: 3px solid var(--primary);" onclick="startQuickRecord('Beatriz Santos Oliveira')">
             <div style="display: flex; align-items: center; gap: 12px;">
               <div class="avatar-box" style="background: var(--gray-100); color: var(--gray-800); font-weight: 700;">BS</div>
@@ -257,7 +239,6 @@
       </div>
     </div>
 
-    <!-- [M03]: Docente - Registro Rápido em 3 Toques -->
     <div id="m03" class="screen-content">
       <div class="app-header">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -271,7 +252,6 @@
       </div>
 
       <div style="padding: 14px 16px;">
-        <!-- Identificação do Estudante Ativo -->
         <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px; border-left: 4px solid var(--primary);">
           <div id="quickRecordStudentAvatar" class="avatar-box" style="width: 44px; height: 44px; background: #DCFCE7; color: #166534; font-weight: 700; font-size: 15px;">LM</div>
           <div>
@@ -280,13 +260,11 @@
           </div>
         </div>
 
-        <!-- Toque 1: Dimensões Socioemocionais (BNCC / IFNMG) -->
         <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
           <span>Toque 1: Dimensão Socioemocional</span>
           <span class="touch-step-badge">Etapa 1/3</span>
         </div>
         <div id="dimensionCardsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
-          <!-- Dimensão 1: Cooperação -->
           <div class="dimension-card selected" onclick="selectDimension('cooperacao', this)">
             <input type="radio" name="mobile_dim" id="dim_coop" checked style="accent-color: var(--primary);">
             <div style="flex: 1;">
@@ -296,7 +274,6 @@
             <span class="badge badge-green" style="font-size: 9px;">BNCC CG09</span>
           </div>
 
-          <!-- Dimensão 2: Autogestão -->
           <div class="dimension-card" onclick="selectDimension('autogestao', this)">
             <input type="radio" name="mobile_dim" id="dim_auto" style="accent-color: var(--primary);">
             <div style="flex: 1;">
@@ -306,7 +283,6 @@
             <span class="badge badge-neutral" style="font-size: 9px;">BNCC CG08</span>
           </div>
 
-          <!-- Dimensão 3: Engajamento -->
           <div class="dimension-card" onclick="selectDimension('engajamento', this)">
             <input type="radio" name="mobile_dim" id="dim_eng" style="accent-color: var(--primary);">
             <div style="flex: 1;">
@@ -316,7 +292,6 @@
             <span class="badge badge-neutral" style="font-size: 9px;">BNCC CG04</span>
           </div>
 
-          <!-- Dimensão 4: Resiliência -->
           <div class="dimension-card" onclick="selectDimension('resiliencia', this)">
             <input type="radio" name="mobile_dim" id="dim_res" style="accent-color: var(--primary);">
             <div style="flex: 1;">
@@ -327,7 +302,6 @@
           </div>
         </div>
 
-        <!-- Toque 2: Natureza Pedagógica -->
         <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
           <span>Toque 2: Natureza da Observação</span>
           <span class="touch-step-badge">Etapa 2/3</span>
@@ -347,13 +321,11 @@
           </div>
         </div>
 
-        <!-- Toque 3: Evidência Observável (Chips Dinâmicos) -->
         <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
           <span>Toque 3: Evidência Objetiva (Chips Múltiplos)</span>
           <span class="touch-step-badge">Etapa 3/3</span>
         </div>
         <div id="evidenceChipsContainer" class="evidence-chips" style="margin-bottom: 16px;">
-          <!-- Populados dinamicamente via JS de acordo com a dimensão selecionada -->
           <div class="ev-chip selected" onclick="toggleEvidenceChip(this)">Apoio ativo aos colegas</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Escuta acolhedora</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Mediação de conflitos</div>
@@ -373,7 +345,6 @@
       </div>
     </div>
 
-    <!-- [M04]: Docente - Histórico e Radar do Aluno -->
     <div id="m04" class="screen-content">
       <div class="app-header">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -396,7 +367,6 @@
           <span id="prontuarioStudentScoreBadge" class="badge badge-green">8.8 Geral</span>
         </div>
 
-        <!-- Radar & Barras de Dimensões -->
         <div class="card" style="margin-bottom: 12px;">
           <div class="section-title">Equilíbrio Socioemocional (Radar)</div>
           <div class="radar-box">
@@ -429,7 +399,6 @@
           </div>
         </div>
 
-        <!-- Linha do Tempo de Observações -->
         <div class="section-title">Histórico de Evidências Recentes</div>
         <div id="studentHistoryContainer">
           <div class="card" style="margin-bottom: 8px;">
@@ -453,7 +422,6 @@
       </div>
     </div>
 
-    <!-- [M05]: Estudante - Painel Formativo Sem Rótulos -->
     <div id="m05" class="screen-content">
       <div class="app-header">
         <div class="logo-group">
@@ -467,7 +435,6 @@
       </div>
 
       <div style="padding: 14px 16px;">
-        <!-- Banner Formativo Positivo -->
         <div class="card" style="background: linear-gradient(135deg, #F0FDF4, #DCFCE7); border-color: var(--primary-border); margin-bottom: 14px;">
           <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
             <span class="badge badge-green">Percurso em Alta</span>
@@ -479,7 +446,6 @@
           </p>
         </div>
 
-        <!-- Gráfico Formativo de Autoeficácia -->
         <div class="card" style="margin-bottom: 12px;">
           <div class="section-title">Suas Competências em Desenvolvimento</div>
           <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
@@ -507,7 +473,6 @@
           </div>
         </div>
 
-        <!-- Chamada de Autoavaliação Guiada -->
         <div class="card card-clickable" style="border: 1.5px solid var(--primary); background: var(--white); margin-bottom: 12px;" onclick="goToScreen('m06')">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
@@ -526,7 +491,6 @@
       </div>
     </div>
 
-    <!-- [M06]: Estudante - Autoavaliação Guiada -->
     <div id="m06" class="screen-content">
       <div class="app-header">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -540,7 +504,6 @@
       </div>
 
       <div style="padding: 14px 16px;">
-        <!-- Pergunta 1 -->
         <div class="card" style="margin-bottom: 12px;">
           <p style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">1. Como você avalia sua cooperação e escuta com os colegas durante atividades em grupo?</p>
           <div class="scale-grid">
@@ -551,7 +514,6 @@
           </div>
         </div>
 
-        <!-- Pergunta 2 -->
         <div class="card" style="margin-bottom: 12px;">
           <p style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">2. Você conseguiu planejar seus horários para cumprir tarefas e chegar no horário?</p>
           <div class="scale-grid">
@@ -562,7 +524,6 @@
           </div>
         </div>
 
-        <!-- Pergunta 3 -->
         <div class="card" style="margin-bottom: 12px;">
           <p style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">3. Diante de dificuldades em matérias desafiadoras, você procurou ajuda ou persistiu?</p>
           <div class="scale-grid">
@@ -573,7 +534,6 @@
           </div>
         </div>
 
-        <!-- Campo de Reflexão Escrita -->
         <div class="card" style="margin-bottom: 14px;">
           <label style="display:block; font-size:12px; font-weight:700; margin-bottom:6px;">O que você mais se orgulha de ter aprendido sobre si mesmo neste bimestre?</label>
           <textarea style="width: 100%; height: 70px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 8px; font-size: 12px; resize: none;" placeholder="Escreva aqui com suas próprias palavras...">Consegui colaborar melhor com meu grupo na maquete de Geografia e melhorei minha pontualidade matinal.</textarea>
@@ -585,7 +545,6 @@
       </div>
     </div>
 
-    <!-- [M07]: Família / Responsáveis - Portal Acolhedor -->
     <div id="m07" class="screen-content">
       <div class="app-header">
         <div class="logo-group">
@@ -640,7 +599,6 @@
       </div>
     </div>
 
-    <!-- [M08]: Família - Mecanismo de Diálogo & Contestação -->
     <div id="m08" class="screen-content">
       <div class="app-header">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -685,7 +643,6 @@
       </div>
     </div>
 
-    <!-- [M09]: Família - Protocolo SLA 48h & Parecer Homologado -->
     <div id="m09" class="screen-content">
       <div class="app-header">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -724,7 +681,6 @@
       </div>
     </div>
 
-    <!-- Barra de Navegação Inferior (Fixa) -->
     <div class="bottom-nav">
       <div class="nav-tab active" onclick="goToScreen('m01')">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -746,15 +702,10 @@
   </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- 2. CASCA E INTERFACE DESKTOP (Exibida em telas >= 1024px)                  -->
-  <!-- ========================================================================= -->
   <div id="desktop-layout-root">
-<!-- Barra Lateral (Sidebar Fixa) -->
   <aside class="sidebar">
     <div class="brand">
       <div style="width: 32px; height: 38px;">
-        <!-- Logo IF -->
         <svg viewBox="0 0 50 60" width="30" height="36">
           <circle cx="9" cy="9" r="8" fill="#CD191E" />
           <rect x="20" y="1" width="13" height="15" rx="3" fill="#2F9E41" />
@@ -807,9 +758,7 @@
     </div>
   </aside>
 
-  <!-- Área Principal -->
   <main class="main-wrapper">
-    <!-- Topbar -->
     <header class="topbar">
       <div style="display: flex; align-items: center; gap: 16px;">
         <div class="topbar-search">
@@ -833,7 +782,6 @@
       </div>
     </header>
 
-    <!-- [D01]: Alerta Precoce (MTSS) -->
     <section id="d01" class="content-area active">
       <div class="page-title">
         <div>
@@ -842,7 +790,6 @@
         </div>
       </div>
 
-      <!-- Grade de Métricas e KPIs -->
       <div class="metrics-grid">
         <div class="metric-card">
           <div class="metric-label">Estudantes Acompanhados</div>
@@ -866,7 +813,6 @@
         </div>
       </div>
 
-      <!-- Painel da Tabela MTSS -->
       <div class="panel-card">
         <div class="panel-header">
           <div class="panel-title">Filtros de Alerta Precoce</div>
@@ -898,7 +844,6 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Linha 1: Lucas Mendes (Aluno Foco - Nível 2 / SLA 48h) -->
               <tr class="highlight-student-row" data-tier="tier2" data-turma="9º Ano B">
                 <td>
                   <div style="display: flex; align-items: center; gap: 6px;">
@@ -929,7 +874,6 @@
                 </td>
               </tr>
 
-              <!-- Linha 2: Beatriz Santos (Aluna Foco - Nível 2 / Autogestão) -->
               <tr class="highlight-student-row" data-tier="tier2" data-turma="9º Ano B">
                 <td>
                   <div style="display: flex; align-items: center; gap: 6px;">
@@ -960,7 +904,6 @@
                 </td>
               </tr>
 
-              <!-- Linha 3: Gabriel Costa (Nível 3) -->
               <tr data-tier="tier3" data-turma="9º Ano B">
                 <td>
                   <div style="font-weight: 700; color: var(--gray-900);">Gabriel Costa Souza</div>
@@ -989,7 +932,6 @@
                 </td>
               </tr>
 
-              <!-- Linha 4: Julia Almeida (Nível 1) -->
               <tr data-tier="tier1" data-turma="9º Ano B">
                 <td>
                   <div style="font-weight: 700; color: var(--gray-900);">Julia Almeida Lima</div>
@@ -1019,7 +961,6 @@
       </div>
     </section>
 
-    <!-- [D02]: Clima Escolar (Abordagem Finlandesa / WHO) -->
     <section id="d02" class="content-area">
       <div class="page-title">
         <div>
@@ -1028,7 +969,6 @@
         </div>
       </div>
 
-      <!-- Mapa de Calor Matricial Interativo -->
       <div class="panel-card" style="margin-bottom: 16px;">
         <div class="panel-header">
           <div class="panel-title">Heatmap por Turma e Dimensão BNCC/CASEL (Clique nas células para detalhar)</div>
@@ -1089,7 +1029,6 @@
         </div>
       </div>
 
-      <!-- Detalhamento Dinâmico da Célula Clicada -->
       <div class="panel-card" style="border-left: 4px solid var(--primary);">
         <div class="panel-header">
           <div class="panel-title" id="heatmapSelectedTitle">9º Ano B • Autogestão & Prazos (Índice: 6.2/10)</div>
@@ -1101,7 +1040,6 @@
       </div>
     </section>
 
-    <!-- [D03]: Prontuário Holístico do Estudante -->
     <section id="d03" class="content-area">
       <div class="page-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
         <div>
@@ -1109,7 +1047,6 @@
           <p>Visão individualizada formativa (LGPD) com cruzamento de radar, frequência e timeline de evidências.</p>
         </div>
 
-        <!-- Seletor Rápido de Estudantes Foco (Lucas <-> Beatriz) -->
         <div style="display: flex; gap: 10px; align-items: center;">
           <div class="student-quick-toggle">
             <button id="btnToggleLucas" class="toggle-pill active" onclick="loadStudentData('Lucas Mendes Silva')">
@@ -1131,7 +1068,6 @@
         </div>
       </div>
 
-      <!-- Cabeçalho do Estudante -->
       <div class="panel-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 16px;">
           <div id="pStudentAvatar" class="avatar-box" style="width: 52px; height: 52px; font-size: 18px; background: #DCFCE7; color: #166534;">LM</div>
@@ -1157,33 +1093,26 @@
         </div>
       </div>
 
-      <!-- Layout em Duas Colunas: Radar vs Timeline -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-        <!-- Coluna Esquerda: Radar SVG & Dimensões -->
         <div class="panel-card">
           <div class="panel-title" style="margin-bottom: 12px;">Equilíbrio Atitudinal Multidimensional (Kindbegrip)</div>
           
-          <!-- Radar Chart SVG Interativo -->
           <div class="radar-chart-container" style="margin-bottom: 14px;">
             <svg id="radarSvg" width="200" height="200" viewBox="0 0 200 200">
-              <!-- Níveis concêntricos de referência -->
               <circle cx="100" cy="100" r="15" fill="none" stroke="#E5E7EB" stroke-width="1" />
               <circle cx="100" cy="100" r="30" fill="none" stroke="#E5E7EB" stroke-width="1" />
               <circle cx="100" cy="100" r="45" fill="none" stroke="#E5E7EB" stroke-width="1" />
               <circle cx="100" cy="100" r="60" fill="none" stroke="#E5E7EB" stroke-width="1" />
               <circle cx="100" cy="100" r="75" fill="none" stroke="#D1D5DB" stroke-width="1.5" stroke-dasharray="3,3" />
               
-              <!-- Linhas axiais dos 5 eixos -->
               <line x1="100" y1="100" x2="100" y2="25" stroke="#E5E7EB" stroke-width="1" />
               <line x1="100" y1="100" x2="171.3" y2="76.8" stroke="#E5E7EB" stroke-width="1" />
               <line x1="100" y1="100" x2="144.1" y2="160.7" stroke="#E5E7EB" stroke-width="1" />
               <line x1="100" y1="100" x2="55.9" y2="160.7" stroke="#E5E7EB" stroke-width="1" />
               <line x1="100" y1="100" x2="28.7" y2="76.8" stroke="#E5E7EB" stroke-width="1" />
               
-              <!-- Polígono Atitudinal Dinâmico -->
               <polygon id="radarPolygon" class="radar-polygon" points="100,31.0 160.2,80.5 139.7,154.6 62.1,152.2 35.2,79.0" />
               
-              <!-- Pontos nos Vértices -->
               <circle id="radarDot0" class="radar-point-dot" cx="100" cy="31.0" r="3.5" />
               <circle id="radarDot1" class="radar-point-dot" cx="160.2" cy="80.5" r="3.5" />
               <circle id="radarDot2" class="radar-point-dot" cx="139.7" cy="154.6" r="3.5" />
@@ -1192,7 +1121,6 @@
             </svg>
           </div>
 
-          <!-- Barras de Métricas -->
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div>
               <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
@@ -1232,20 +1160,17 @@
           </div>
         </div>
 
-        <!-- Coluna Direita: Timeline de Evidências Multidisciplinar -->
         <div class="panel-card">
           <div class="panel-header" style="margin-bottom: 10px;">
             <div class="panel-title">Linha do Tempo de Observações Docentes</div>
             <button id="btnTimelinePrescrever" class="btn-sm" onclick="openInterventionFor('Lucas Mendes Silva', '9º Ano B')">+ Prescrever Ação</button>
           </div>
           <div id="pStudentTimeline" style="max-height: 380px; overflow-y: auto;">
-            <!-- Preenchido dinamicamente via JS -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- [D04]: Central de Mediação & Contestações Familiares -->
     <section id="d04" class="content-area">
       <div class="page-title">
         <div>
@@ -1267,7 +1192,6 @@
           </div>
         </div>
 
-        <!-- Comparador Lado a Lado -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px;">
           <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px;">
             <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 6px;">1. Registro do Docente em Sala</div>
@@ -1290,10 +1214,6 @@
   </main>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- 3. MODAIS GLOBAIS COMPARTILHADOS                                          -->
-  <!-- ========================================================================= -->
-<!-- Modal de Evidência Extra / Anotação Confidencial -->
   <div id="modalExtraEvidence" class="modal-backdrop">
     <div class="modal-container" style="max-width: 350px;">
       <div class="modal-header">
@@ -1319,7 +1239,6 @@
     </div>
   </div>
 
-<!-- Modal 1: Nova Intervenção Pedagógica (MTSS) -->
   <div id="modalIntervencao" class="modal-backdrop">
     <div class="modal-container">
       <div class="modal-header">
@@ -1354,7 +1273,6 @@
     </div>
   </div>
 
-  <!-- Modal 2: Resolução de Mediação e Parecer Homologado -->
   <div id="modalResolucao" class="modal-backdrop">
     <div class="modal-container">
       <div class="modal-header">
@@ -1385,7 +1303,6 @@
     </div>
   </div>
 
-  <!-- Modal 3: Relatório Síntese Formativo para Conselho de Classe (LGPD) -->
   <div id="modalRelatorio" class="modal-backdrop">
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
@@ -1419,7 +1336,6 @@
     </div>
   </div>
 
-  <!-- Scripts Modulares -->
   <script src="js/mobile.js"></script>
   <script src="js/desktop.js"></script>
 </body>
