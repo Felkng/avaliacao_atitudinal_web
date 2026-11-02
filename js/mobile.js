@@ -1,16 +1,128 @@
 /**
  * Lógica Interativa do Protótipo Mobile (IFNMG AvaliaAtitude)
- * Cobre 100% dos fluxos de Professor, Estudante e Responsáveis.
+ * Cobre 100% dos fluxos de Professor, Estudante e Responsáveis com 2 alunos interativos.
  */
+
+// Base de Dados dos Estudantes Interativos
+const StudentsData = {
+  'Lucas Mendes Silva': {
+    name: 'Lucas Mendes Silva',
+    matricula: '2024.1.09B.01',
+    turma: '9º Ano B',
+    initials: 'LM',
+    avatarBg: '#DCFCE7',
+    avatarColor: '#166534',
+    generalScore: '8.8 Geral',
+    generalScoreNum: '8.8',
+    scores: {
+      cooperacao: 9.2,
+      autogestao: 8.4,
+      engajamento: 9.0,
+      resiliencia: 8.6
+    },
+    history: [
+      {
+        dim: 'Cooperação',
+        badge: 'badge-green',
+        time: 'Hoje, 08:30',
+        text: 'Apoio ativo aos colegas no trabalho de campo de Geografia.',
+        teacher: 'Profª. Luciana Rocha (Geografia)'
+      },
+      {
+        dim: 'Autogestão',
+        badge: 'badge-green',
+        time: '24/10/2026',
+        text: 'Entrega antecipada do relatório em grupo com síntese organizada.',
+        teacher: 'Prof. Marcos Prado (História)'
+      }
+    ]
+  },
+  'Beatriz Santos Oliveira': {
+    name: 'Beatriz Santos Oliveira',
+    matricula: '2024.1.09B.02',
+    turma: '9º Ano B',
+    initials: 'BS',
+    avatarBg: '#EFF6FF',
+    avatarColor: '#1D4ED8',
+    generalScore: '9.1 Geral',
+    generalScoreNum: '9.1',
+    scores: {
+      cooperacao: 8.8,
+      autogestao: 9.5,
+      engajamento: 8.9,
+      resiliencia: 9.2
+    },
+    history: [
+      {
+        dim: 'Autogestão',
+        badge: 'badge-green',
+        time: 'Ontem, 14:15',
+        text: 'Excelente organização do cronograma de estudos e liderança de tarefas.',
+        teacher: 'Profª. Luciana Rocha (Geografia)'
+      },
+      {
+        dim: 'Resiliência',
+        badge: 'badge-green',
+        time: '22/10/2026',
+        text: 'Persistência exemplar na resolução de problemas matemáticos complexos.',
+        teacher: 'Prof. Carlos Mendes (Matemática)'
+      }
+    ]
+  }
+};
+
+// Catálogo de Evidências por Dimensão (BNCC / Projeto Institucional)
+const DIMENSION_DATA = {
+  cooperacao: {
+    name: 'Cooperação e Empatia',
+    chips: [
+      'Apoio ativo aos colegas',
+      'Escuta acolhedora',
+      'Mediação de conflitos',
+      'Postura receptiva',
+      'Liderança compartilhada'
+    ]
+  },
+  autogestao: {
+    name: 'Autogestão e Pontualidade',
+    chips: [
+      'Pontualidade nas entregas',
+      'Organização de material',
+      'Cumprimento de combinados',
+      'Foco nas tarefas',
+      'Planejamento de rotina'
+    ]
+  },
+  engajamento: {
+    name: 'Engajamento e Comunicação',
+    chips: [
+      'Participação ativa em aula',
+      'Curiosidade investigativa',
+      'Propositividade de ideias',
+      'Comunicação assertiva',
+      'Entusiasmo cooperativo'
+    ]
+  },
+  resiliencia: {
+    name: 'Resiliência e Superação',
+    chips: [
+      'Persistência diante de erros',
+      'Acolhimento de feedbacks',
+      'Regulação socioemocional',
+      'Adaptação a mudanças',
+      'Superação de desafios'
+    ]
+  }
+};
 
 // Estado da Aplicação Mobile
 const MobileState = {
   currentProfile: 'professor',
   selectedClass: '9º Ano B - Ensino Fundamental',
   selectedStudent: 'Lucas Mendes Silva',
-  selectedDimension: 'Cooperação e Empatia',
+  selectedDimension: 'cooperacao',
   selectedNature: 'formativa',
-  selectedChips: new Set(['Apoio aos colegas']),
+  selectedChips: new Set(['Apoio ativo aos colegas']),
   ratings: { q1: 3, q2: 4, q3: 3, q4: 4 }
 };
 
@@ -47,7 +159,7 @@ function updateBottomNav(screenId) {
   const tabs = document.querySelectorAll('.bottom-nav .nav-tab');
   tabs.forEach(t => t.classList.remove('active'));
 
-  if (['m01', 'm02'].includes(screenId)) {
+  if (['m00', 'm01', 'm02'].includes(screenId)) {
     if (tabs[0]) tabs[0].classList.add('active');
   } else if (screenId === 'm03') {
     if (tabs[1]) tabs[1].classList.add('active');
@@ -68,10 +180,10 @@ function selectProfile(profile) {
     showToast('Perfil alterado: Professor(a) Luciana R.');
   } else if (profile === 'aluno') {
     switchScreen('m05');
-    showToast('Perfil alterado: Estudante Lucas Mendes');
+    showToast(`Perfil alterado: Estudante ${MobileState.selectedStudent}`);
   } else if (profile === 'responsavel') {
     switchScreen('m07');
-    showToast('Perfil alterado: Responsável (Srª. Silva)');
+    showToast(`Perfil alterado: Responsável de ${MobileState.selectedStudent}`);
   }
 }
 
@@ -85,13 +197,96 @@ function selectTurma(turmaName) {
 }
 
 // M02: Seleção de Aluno para Registro Rápido
-function startQuickRecord(studentName, matricula) {
+function startQuickRecord(studentName) {
   MobileState.selectedStudent = studentName;
+  const student = StudentsData[studentName] || StudentsData['Lucas Mendes Silva'];
+
+  // Atualiza cabeçalho do formulário M03
+  const avatarEl = document.getElementById('quickRecordStudentAvatar');
+  if (avatarEl) {
+    avatarEl.textContent = student.initials;
+    avatarEl.style.background = student.avatarBg;
+    avatarEl.style.color = student.avatarColor;
+  }
   const nameEl = document.getElementById('quickRecordStudentName');
-  if (nameEl) nameEl.textContent = studentName;
+  if (nameEl) nameEl.textContent = student.name;
   const matEl = document.getElementById('quickRecordStudentMat');
-  if (matEl) matEl.textContent = matricula || '2024.1.09B';
+  if (matEl) matEl.textContent = `Matrícula: ${student.matricula} • ${student.turma}`;
+
+  // Reseta ou inicializa chips para a dimensão atual
+  renderEvidenceChips(MobileState.selectedDimension);
+
   switchScreen('m03');
+  showToast(`Registrando observação para ${student.name}`);
+}
+
+// M02 / M04: Abertura do Radar com dados específicos do aluno
+function openStudentRadar(studentName) {
+  MobileState.selectedStudent = studentName;
+  const student = StudentsData[studentName] || StudentsData['Lucas Mendes Silva'];
+
+  // Atualiza identificação
+  const avatarEl = document.getElementById('prontuarioStudentAvatar');
+  if (avatarEl) {
+    avatarEl.textContent = student.initials;
+    avatarEl.style.background = student.avatarBg;
+    avatarEl.style.color = student.avatarColor;
+  }
+  const nameEl = document.getElementById('prontuarioStudentName');
+  if (nameEl) nameEl.textContent = student.name;
+  const matEl = document.getElementById('prontuarioStudentMat');
+  if (matEl) matEl.textContent = `${student.turma} • Matrícula ${student.matricula}`;
+  const badgeEl = document.getElementById('prontuarioStudentScoreBadge');
+  if (badgeEl) badgeEl.textContent = student.generalScore;
+
+  // Atualiza Radar e Barras
+  const scoreCenter = document.getElementById('radarScoreCenter');
+  if (scoreCenter) scoreCenter.textContent = student.generalScoreNum;
+
+  const barCoop = document.getElementById('barFillCooperacao');
+  const valCoop = document.getElementById('barValCooperacao');
+  if (barCoop && valCoop) {
+    valCoop.textContent = student.scores.cooperacao.toFixed(1);
+    barCoop.style.width = (student.scores.cooperacao * 10) + '%';
+  }
+
+  const barAuto = document.getElementById('barFillAutogestao');
+  const valAuto = document.getElementById('barValAutogestao');
+  if (barAuto && valAuto) {
+    valAuto.textContent = student.scores.autogestao.toFixed(1);
+    barAuto.style.width = (student.scores.autogestao * 10) + '%';
+  }
+
+  const barEng = document.getElementById('barFillEngajamento');
+  const valEng = document.getElementById('barValEngajamento');
+  if (barEng && valEng) {
+    valEng.textContent = student.scores.engajamento.toFixed(1);
+    barEng.style.width = (student.scores.engajamento * 10) + '%';
+  }
+
+  const barRes = document.getElementById('barFillResiliencia');
+  const valRes = document.getElementById('barValResiliencia');
+  if (barRes && valRes) {
+    valRes.textContent = student.scores.resiliencia.toFixed(1);
+    barRes.style.width = (student.scores.resiliencia * 10) + '%';
+  }
+
+  // Atualiza histórico recente
+  const historyContainer = document.getElementById('studentHistoryContainer');
+  if (historyContainer && student.history) {
+    historyContainer.innerHTML = student.history.map(item => `
+      <div class="card" style="margin-bottom: 8px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
+          <span class="badge ${item.badge || 'badge-green'}">${item.dim}</span>
+          <span style="font-size: 11px; color: var(--gray-400);">${item.time}</span>
+        </div>
+        <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">${item.text}</p>
+        <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: ${item.teacher}</p>
+      </div>
+    `).join('');
+  }
+
+  switchScreen('m04');
 }
 
 // M02: Filtragem de Alunos em Tempo Real
@@ -124,27 +319,95 @@ function filterByDimensionChip(chip, dimension) {
 }
 
 // M03: Registro Rápido em 3 Toques
+function selectDimension(dimKey, element) {
+  MobileState.selectedDimension = dimKey;
+
+  // Atualiza seleção visual dos cartões
+  document.querySelectorAll('#dimensionCardsContainer .dimension-card').forEach(card => {
+    card.classList.remove('selected');
+    const radio = card.querySelector('input[type="radio"]');
+    if (radio) radio.checked = false;
+  });
+
+  if (element) {
+    element.classList.add('selected');
+    const radio = element.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+  }
+
+  // Atualiza chips correspondentes à dimensão selecionada
+  renderEvidenceChips(dimKey);
+}
+
+function renderEvidenceChips(dimKey) {
+  const container = document.getElementById('evidenceChipsContainer');
+  if (!container) return;
+
+  const data = DIMENSION_DATA[dimKey] || DIMENSION_DATA.cooperacao;
+  MobileState.selectedChips.clear();
+  
+  // Seleciona o primeiro chip por padrão
+  if (data.chips.length > 0) {
+    MobileState.selectedChips.add(data.chips[0]);
+  }
+
+  container.innerHTML = data.chips.map((chipText, index) => {
+    const isSelected = index === 0;
+    return `
+      <div class="ev-chip ${isSelected ? 'selected' : ''}" onclick="toggleEvidenceChip(this)">
+        ${isSelected ? '✓ ' : ''}${chipText}
+      </div>
+    `;
+  }).join('');
+}
+
 function selectNature(card, type) {
-  document.querySelectorAll('.nature-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
+  document.querySelectorAll('.nature-card').forEach(c => {
+    c.classList.remove('selected', 'formativa', 'atencao', 'neutra');
+  });
+  card.classList.add('selected', type);
   MobileState.selectedNature = type;
 }
 
 function toggleEvidenceChip(chip) {
   chip.classList.toggle('selected');
-  const text = chip.textContent.trim();
-  if (MobileState.selectedChips.has(text)) {
-    MobileState.selectedChips.delete(text);
-  } else {
+  let text = chip.textContent.replace('✓', '').trim();
+
+  if (chip.classList.contains('selected')) {
     MobileState.selectedChips.add(text);
+    chip.innerHTML = `✓ ${text}`;
+  } else {
+    MobileState.selectedChips.delete(text);
+    chip.innerHTML = text;
   }
 }
 
 function submitQuickRecord() {
-  const student = MobileState.selectedStudent;
-  showToast(`Registro salvo com sucesso para ${student}! Protocolo #9102 gerado.`);
+  const studentName = MobileState.selectedStudent;
+  const student = StudentsData[studentName];
+  const dimObj = DIMENSION_DATA[MobileState.selectedDimension] || DIMENSION_DATA.cooperacao;
+  const chipsArray = Array.from(MobileState.selectedChips);
+  const chipsDesc = chipsArray.length > 0 ? chipsArray.join(', ') : 'Observação atitudinal em aula';
+
+  // Adiciona ao histórico do aluno
+  if (student && student.history) {
+    const natureBadge = MobileState.selectedNature === 'formativa' 
+      ? 'badge-green' 
+      : (MobileState.selectedNature === 'atencao' ? 'badge-alert' : 'badge-neutral');
+
+    student.history.unshift({
+      dim: dimObj.name,
+      badge: natureBadge,
+      time: 'Agora mesmo',
+      text: `${chipsDesc} (${MobileState.selectedNature.toUpperCase()})`,
+      teacher: 'Profª. Luciana Rocha (Geografia)'
+    });
+  }
+
+  showToast(`Registro salvo com sucesso para ${studentName}! Natureza: ${MobileState.selectedNature.toUpperCase()}`);
+  
   setTimeout(() => {
-    switchScreen('m04');
+    openStudentRadar(studentName);
   }, 700);
 }
 
@@ -213,3 +476,9 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 3000);
 }
+
+// Inicialização de chips e navegação no carregamento
+document.addEventListener('DOMContentLoaded', () => {
+  renderEvidenceChips('cooperacao');
+  updateBottomNav('m00');
+});

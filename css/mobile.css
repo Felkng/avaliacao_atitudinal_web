@@ -204,6 +204,57 @@ body.mobile-preview {
   font-weight: 700;
 }
 
+.nature-card.selected.formativa {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  box-shadow: 0 0 0 2px var(--primary-border);
+}
+
+.nature-card.selected.atencao {
+  border-color: var(--alert);
+  background: var(--alert-bg);
+  color: var(--alert);
+  box-shadow: 0 0 0 2px var(--alert-border);
+}
+
+.nature-card.selected.neutra {
+  border-color: var(--gray-600);
+  background: var(--gray-100);
+  color: var(--gray-900);
+  box-shadow: 0 0 0 2px var(--gray-300);
+}
+
+/* Cartões de Dimensões Interativos (M03) */
+.dimension-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dimension-card:hover {
+  border-color: var(--primary);
+  background: var(--gray-50);
+}
+
+.dimension-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 1.5px var(--primary-border);
+}
+
+.dimension-card input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
 /* Visualização do Gráfico de Radar */
 .radar-box {
   display: flex;
@@ -373,26 +424,32 @@ body.mobile-preview {
 }
 
 .ev-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 6px 12px;
   background: var(--white);
-  border: 1px solid var(--gray-300);
+  border: 1.5px solid var(--gray-300);
   border-radius: var(--radius-md);
   font-size: 11px;
   font-weight: 600;
   color: var(--gray-700);
   cursor: pointer;
   transition: all 0.15s;
+  user-select: none;
 }
 
 .ev-chip:hover {
   border-color: var(--primary);
+  color: var(--primary);
 }
 
 .ev-chip.selected {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary-dark);
   font-weight: 700;
+  box-shadow: 0 2px 4px rgba(47, 158, 65, 0.25);
 }
 
 /* Escala de Autoavaliação (M06) */

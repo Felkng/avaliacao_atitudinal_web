@@ -158,7 +158,7 @@
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
               <h3 style="font-size: 14px; font-weight: 700;">9º Ano B</h3>
-              <p style="font-size: 11px; color: var(--gray-500);">Ensino Fundamental • 32 Alunos</p>
+              <p style="font-size: 11px; color: var(--gray-500);">Ensino Fundamental • 2 Alunos Cadastrados</p>
             </div>
             <span class="badge badge-neutral">Sala 14</span>
           </div>
@@ -207,7 +207,7 @@
           <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="goToScreen('m01')">←</button>
           <div>
             <h1 id="currentTurmaTitle" style="font-size: 14px; font-weight: 700;">9º Ano B</h1>
-            <p style="font-size: 11px; color: var(--gray-500);">32 estudantes matriculados</p>
+            <p id="currentTurmaSubtitle" style="font-size: 11px; color: var(--gray-500);">2 estudantes matriculados</p>
           </div>
         </div>
         <button class="btn btn-sm btn-primary" onclick="startQuickRecord('Lucas Mendes Silva')">+ Registro</button>
@@ -224,71 +224,41 @@
 
         <!-- Filtros em Carrossel Horizontal -->
         <div class="chips-scroll">
-          <div class="filter-chip active" onclick="filterByDimensionChip(this, 'all')">Todas</div>
-          <div class="filter-chip" onclick="filterByDimensionChip(this, 'cooperacao')">Cooperação</div>
-          <div class="filter-chip" onclick="filterByDimensionChip(this, 'autogestao')">Autogestão</div>
-          <div class="filter-chip" onclick="filterByDimensionChip(this, 'engajamento')">Engajamento</div>
-          <div class="filter-chip" onclick="filterByDimensionChip(this, 'resiliencia')">Resiliência</div>
+          <div class="filter-chip active" onclick="filterByDimensionChip(this, 'all')">Todos (2)</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'cooperacao')">Cooperação (1)</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'autogestao')">Autogestão (1)</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'engajamento')">Engajamento (0)</div>
+          <div class="filter-chip" onclick="filterByDimensionChip(this, 'resiliencia')">Resiliência (0)</div>
         </div>
 
         <div id="studentListContainer">
           <!-- Aluno 1: Lucas Mendes -->
-          <div class="card card-clickable student-row-card" data-name="Lucas Mendes Silva" data-dim="cooperacao" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Lucas Mendes Silva', '2024.1.09B.01')">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="avatar-box">LM</div>
+          <div class="card card-clickable student-row-card" data-name="Lucas Mendes Silva" data-dim="cooperacao" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; border-left: 3px solid var(--primary);" onclick="startQuickRecord('Lucas Mendes Silva')">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="avatar-box" style="background: #DCFCE7; color: #166534; font-weight: 700;">LM</div>
               <div>
-                <h4 style="font-size: 13px; font-weight: 700;">Lucas Mendes Silva</h4>
+                <h4 style="font-size: 13px; font-weight: 700; color: var(--gray-900);">Lucas Mendes Silva</h4>
                 <p style="font-size: 11px; color: var(--gray-500);">Última: Cooperação • Hoje 08:30</p>
               </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
               <span class="badge badge-green">Consistente</span>
-              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
+              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); openStudentRadar('Lucas Mendes Silva');">Radar</button>
             </div>
           </div>
 
           <!-- Aluno 2: Beatriz Santos -->
-          <div class="card card-clickable student-row-card" data-name="Beatriz Santos Oliveira" data-dim="autogestao" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Beatriz Santos Oliveira', '2024.1.09B.02')">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="avatar-box" style="background: #EFF6FF; color: #1D4ED8;">BS</div>
+          <div class="card card-clickable student-row-card" data-name="Beatriz Santos Oliveira" data-dim="autogestao" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; border-left: 3px solid #2563EB;" onclick="startQuickRecord('Beatriz Santos Oliveira')">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="avatar-box" style="background: #EFF6FF; color: #1D4ED8; font-weight: 700;">BS</div>
               <div>
-                <h4 style="font-size: 13px; font-weight: 700;">Beatriz Santos Oliveira</h4>
-                <p style="font-size: 11px; color: var(--gray-500);">Última: Autogestão • Ontem</p>
+                <h4 style="font-size: 13px; font-weight: 700; color: var(--gray-900);">Beatriz Santos Oliveira</h4>
+                <p style="font-size: 11px; color: var(--gray-500);">Última: Autogestão • Ontem 14:15</p>
               </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span class="badge badge-neutral">Sem pendências</span>
-              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
-            </div>
-          </div>
-
-          <!-- Aluno 3: Gabriel Costa -->
-          <div class="card card-clickable student-row-card" data-name="Gabriel Costa Souza" data-dim="engajamento" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Gabriel Costa Souza', '2024.1.09B.03')">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="avatar-box" style="background: #FEF2F2; color: #DC2626;">GC</div>
-              <div>
-                <h4 style="font-size: 13px; font-weight: 700;">Gabriel Costa Souza</h4>
-                <p style="font-size: 11px; color: var(--alert);">Queda de pontualidade • 3 dias</p>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span class="badge badge-alert">Atenção</span>
-              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
-            </div>
-          </div>
-
-          <!-- Aluno 4: Julia Almeida -->
-          <div class="card card-clickable student-row-card" data-name="Julia Almeida Lima" data-dim="resiliencia" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;" onclick="startQuickRecord('Julia Almeida Lima', '2024.1.09B.04')">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="avatar-box" style="background: #FDF2F8; color: #DB2777;">JA</div>
-              <div>
-                <h4 style="font-size: 13px; font-weight: 700;">Julia Almeida Lima</h4>
-                <p style="font-size: 11px; color: var(--gray-500);">Última: Resiliência • Há 4 dias</p>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span class="badge badge-green">Consistente</span>
-              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); goToScreen('m04');">Radar</button>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="badge badge-green">Destaque</span>
+              <button class="btn btn-sm btn-outline" style="padding: 4px 8px;" onclick="event.stopPropagation(); openStudentRadar('Beatriz Santos Oliveira');">Radar</button>
             </div>
           </div>
         </div>
@@ -310,59 +280,96 @@
 
       <div style="padding: 14px 16px;">
         <!-- Identificação do Estudante Ativo -->
-        <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-          <div class="avatar-box" style="width: 42px; height: 42px;">LM</div>
+        <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px; border-left: 4px solid var(--primary);">
+          <div id="quickRecordStudentAvatar" class="avatar-box" style="width: 44px; height: 44px; background: #DCFCE7; color: #166534; font-weight: 700; font-size: 15px;">LM</div>
           <div>
-            <h3 id="quickRecordStudentName" style="font-size: 14px; font-weight: 700;">Lucas Mendes Silva</h3>
-            <p id="quickRecordStudentMat" style="font-size: 11px; color: var(--gray-500);">Matrícula: 2024.1.09B • 9º Ano B</p>
+            <h3 id="quickRecordStudentName" style="font-size: 14px; font-weight: 700; color: var(--gray-900);">Lucas Mendes Silva</h3>
+            <p id="quickRecordStudentMat" style="font-size: 11px; color: var(--gray-500);">Matrícula: 2024.1.09B.01 • 9º Ano B</p>
           </div>
         </div>
 
-        <!-- Toque 1: Dimensão BNCC -->
-        <div class="section-title">Toque 1: Dimensão Socioemocional</div>
-        <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
-          <label class="card card-clickable" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 12px;">
-            <input type="radio" name="mobile_dim" checked>
-            <span style="font-size: 13px; font-weight: 600;">Cooperação e Empatia (Trabalho Coletivo)</span>
-          </label>
-          <label class="card card-clickable" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 12px;">
-            <input type="radio" name="mobile_dim">
-            <span style="font-size: 13px; font-weight: 600;">Autogestão e Pontualidade</span>
-          </label>
-          <label class="card card-clickable" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 12px;">
-            <input type="radio" name="mobile_dim">
-            <span style="font-size: 13px; font-weight: 600;">Engajamento e Comunicação</span>
-          </label>
+        <!-- Toque 1: Dimensões Socioemocionais (BNCC / IFNMG) -->
+        <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Toque 1: Dimensão Socioemocional</span>
+          <span class="touch-step-badge">Etapa 1/3</span>
+        </div>
+        <div id="dimensionCardsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+          <!-- Dimensão 1: Cooperação -->
+          <div class="dimension-card selected" onclick="selectDimension('cooperacao', this)">
+            <input type="radio" name="mobile_dim" id="dim_coop" checked style="accent-color: var(--primary);">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 700;">Cooperação e Empatia</div>
+              <div style="font-size: 10px; color: var(--gray-500);">Trabalho coletivo, escuta e apoio mútuo</div>
+            </div>
+            <span class="badge badge-green" style="font-size: 9px;">BNCC CG09</span>
+          </div>
+
+          <!-- Dimensão 2: Autogestão -->
+          <div class="dimension-card" onclick="selectDimension('autogestao', this)">
+            <input type="radio" name="mobile_dim" id="dim_auto" style="accent-color: var(--primary);">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 700;">Autogestão e Pontualidade</div>
+              <div style="font-size: 10px; color: var(--gray-500);">Organização, compromisso e foco</div>
+            </div>
+            <span class="badge badge-neutral" style="font-size: 9px;">BNCC CG08</span>
+          </div>
+
+          <!-- Dimensão 3: Engajamento -->
+          <div class="dimension-card" onclick="selectDimension('engajamento', this)">
+            <input type="radio" name="mobile_dim" id="dim_eng" style="accent-color: var(--primary);">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 700;">Engajamento e Comunicação</div>
+              <div style="font-size: 10px; color: var(--gray-500);">Participação ativa e posicionamento construtivo</div>
+            </div>
+            <span class="badge badge-neutral" style="font-size: 9px;">BNCC CG04</span>
+          </div>
+
+          <!-- Dimensão 4: Resiliência -->
+          <div class="dimension-card" onclick="selectDimension('resiliencia', this)">
+            <input type="radio" name="mobile_dim" id="dim_res" style="accent-color: var(--primary);">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 700;">Resiliência e Superação</div>
+              <div style="font-size: 10px; color: var(--gray-500);">Persistência diante de desafios e erros</div>
+            </div>
+            <span class="badge badge-neutral" style="font-size: 9px;">BNCC CG10</span>
+          </div>
         </div>
 
         <!-- Toque 2: Natureza Pedagógica -->
-        <div class="section-title">Toque 2: Natureza da Observação</div>
-        <div class="nature-grid" style="margin-bottom: 12px;">
-          <div class="nature-card selected" onclick="selectNature(this, 'formativa')">
-            <div style="font-size: 12px; font-weight: 700; color: var(--primary);">Formativa</div>
-            <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;">Comportamento positivo</div>
+        <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Toque 2: Natureza da Observação</span>
+          <span class="touch-step-badge">Etapa 2/3</span>
+        </div>
+        <div class="nature-grid" style="margin-bottom: 14px;">
+          <div class="nature-card selected formativa" onclick="selectNature(this, 'formativa')">
+            <div style="font-size: 12px; font-weight: 700;">Formativa</div>
+            <div style="font-size: 10px; margin-top: 2px;">Positiva / Crescimento</div>
           </div>
-          <div class="nature-card" onclick="selectNature(this, 'atencao')">
-            <div style="font-size: 12px; font-weight: 700; color: var(--alert);">Ponto de Atenção</div>
-            <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;">Demanda mediação</div>
+          <div class="nature-card atencao" onclick="selectNature(this, 'atencao')">
+            <div style="font-size: 12px; font-weight: 700;">Ponto de Atenção</div>
+            <div style="font-size: 10px; margin-top: 2px;">Demanda Mediação</div>
           </div>
-          <div class="nature-card" onclick="selectNature(this, 'neutra')">
-            <div style="font-size: 12px; font-weight: 700; color: var(--gray-700);">Neutra</div>
-            <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;">Fato contextual</div>
+          <div class="nature-card neutra" onclick="selectNature(this, 'neutra')">
+            <div style="font-size: 12px; font-weight: 700;">Neutra</div>
+            <div style="font-size: 10px; margin-top: 2px;">Fato Contextual</div>
           </div>
         </div>
 
-        <!-- Toque 3: Evidência Observável -->
-        <div class="section-title">Toque 3: Evidência Objetiva (Chips)</div>
-        <div class="evidence-chips" style="margin-bottom: 16px;">
-          <div class="ev-chip selected" onclick="toggleEvidenceChip(this)">Apoio ativo aos colegas</div>
+        <!-- Toque 3: Evidência Observável (Chips Dinâmicos) -->
+        <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Toque 3: Evidência Objetiva (Chips Múltiplos)</span>
+          <span class="touch-step-badge">Etapa 3/3</span>
+        </div>
+        <div id="evidenceChipsContainer" class="evidence-chips" style="margin-bottom: 16px;">
+          <!-- Populados dinamicamente via JS de acordo com a dimensão selecionada -->
+          <div class="ev-chip selected" onclick="toggleEvidenceChip(this)">✓ Apoio ativo aos colegas</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Escuta acolhedora</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Mediação de conflitos</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Postura receptiva</div>
           <div class="ev-chip" onclick="toggleEvidenceChip(this)">Liderança compartilhada</div>
         </div>
 
-        <button class="btn btn-primary btn-block" onclick="submitQuickRecord()">
+        <button class="btn btn-primary btn-block" style="padding: 12px; font-size: 13px; font-weight: 700;" onclick="submitQuickRecord()">
           <span>✓ Salvar Registro Imediato</span>
         </button>
 
@@ -388,13 +395,13 @@
       </div>
 
       <div style="padding: 14px 16px;">
-        <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-          <div class="avatar-box" style="width: 44px; height: 44px;">LM</div>
+        <div class="card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; border-left: 4px solid var(--primary);">
+          <div id="prontuarioStudentAvatar" class="avatar-box" style="width: 44px; height: 44px; background: #DCFCE7; color: #166534; font-weight: 700; font-size: 15px;">LM</div>
           <div style="flex: 1;">
-            <h3 style="font-size: 14px; font-weight: 700;">Lucas Mendes Silva</h3>
-            <p style="font-size: 11px; color: var(--gray-500);">9º Ano B • Matrícula 2024.1.09B.01</p>
+            <h3 id="prontuarioStudentName" style="font-size: 14px; font-weight: 700; color: var(--gray-900);">Lucas Mendes Silva</h3>
+            <p id="prontuarioStudentMat" style="font-size: 11px; color: var(--gray-500);">9º Ano B • Matrícula 2024.1.09B.01</p>
           </div>
-          <span class="badge badge-green">8.8 Geral</span>
+          <span id="prontuarioStudentScoreBadge" class="badge badge-green">8.8 Geral</span>
         </div>
 
         <!-- Radar & Barras de Dimensões -->
@@ -407,24 +414,24 @@
               <div class="radar-dot" style="top:92px; left:78px; background:var(--primary);"></div>
               <div class="radar-dot" style="top:92px; left:34px; background:var(--primary);"></div>
               <div class="radar-dot" style="top:56px; left:18px; background:var(--primary);"></div>
-              <span style="font-size:11px; font-weight:700; color:var(--primary-dark);">8.8</span>
+              <span id="radarScoreCenter" style="font-size:12px; font-weight:800; color:var(--primary-dark);">8.8</span>
             </div>
             <div class="dimension-bars">
               <div class="d-bar-row">
-                <div style="display:flex; justify-content:space-between;"><span>Cooperação</span><strong>9.2</strong></div>
-                <div class="d-bar-track"><div class="d-bar-fill" style="width: 92%;"></div></div>
+                <div style="display:flex; justify-content:space-between;"><span>Cooperação</span><strong id="barValCooperacao">9.2</strong></div>
+                <div class="d-bar-track"><div id="barFillCooperacao" class="d-bar-fill" style="width: 92%;"></div></div>
               </div>
               <div class="d-bar-row">
-                <div style="display:flex; justify-content:space-between;"><span>Autogestão</span><strong>8.4</strong></div>
-                <div class="d-bar-track"><div class="d-bar-fill" style="width: 84%;"></div></div>
+                <div style="display:flex; justify-content:space-between;"><span>Autogestão</span><strong id="barValAutogestao">8.4</strong></div>
+                <div class="d-bar-track"><div id="barFillAutogestao" class="d-bar-fill" style="width: 84%;"></div></div>
               </div>
               <div class="d-bar-row">
-                <div style="display:flex; justify-content:space-between;"><span>Engajamento</span><strong>9.0</strong></div>
-                <div class="d-bar-track"><div class="d-bar-fill" style="width: 90%;"></div></div>
+                <div style="display:flex; justify-content:space-between;"><span>Engajamento</span><strong id="barValEngajamento">9.0</strong></div>
+                <div class="d-bar-track"><div id="barFillEngajamento" class="d-bar-fill" style="width: 90%;"></div></div>
               </div>
               <div class="d-bar-row">
-                <div style="display:flex; justify-content:space-between;"><span>Resiliência</span><strong>8.6</strong></div>
-                <div class="d-bar-track"><div class="d-bar-fill" style="width: 86%;"></div></div>
+                <div style="display:flex; justify-content:space-between;"><span>Resiliência</span><strong id="barValResiliencia">8.6</strong></div>
+                <div class="d-bar-track"><div id="barFillResiliencia" class="d-bar-fill" style="width: 86%;"></div></div>
               </div>
             </div>
           </div>
@@ -432,22 +439,24 @@
 
         <!-- Linha do Tempo de Observações -->
         <div class="section-title">Histórico de Evidências Recentes</div>
-        <div class="card" style="margin-bottom: 8px;">
-          <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
-            <span class="badge badge-green">Cooperação</span>
-            <span style="font-size: 11px; color: var(--gray-400);">Hoje, 08:30</span>
+        <div id="studentHistoryContainer">
+          <div class="card" style="margin-bottom: 8px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
+              <span class="badge badge-green">Cooperação</span>
+              <span style="font-size: 11px; color: var(--gray-400);">Hoje, 08:30</span>
+            </div>
+            <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">Apoio ativo aos colegas no trabalho de campo.</p>
+            <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: Profª. Luciana Rocha (Geografia)</p>
           </div>
-          <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">Apoio ativo aos colegas no trabalho de campo.</p>
-          <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: Profª. Luciana Rocha (Geografia)</p>
-        </div>
 
-        <div class="card" style="margin-bottom: 12px;">
-          <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
-            <span class="badge badge-green">Autogestão</span>
-            <span style="font-size: 11px; color: var(--gray-400);">24/10/2026</span>
+          <div class="card" style="margin-bottom: 12px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 4px;">
+              <span class="badge badge-green">Autogestão</span>
+              <span style="font-size: 11px; color: var(--gray-400);">24/10/2026</span>
+            </div>
+            <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">Entrega antecipada do relatório em grupo.</p>
+            <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: Prof. Marcos Prado (História)</p>
           </div>
-          <p style="font-size: 12px; color: var(--gray-800); font-weight: 600;">Entrega antecipada do relatório em grupo.</p>
-          <p style="font-size: 11px; color: var(--gray-500); margin-top: 2px;">Registrado por: Prof. Marcos Prado (História)</p>
         </div>
       </div>
     </div>
